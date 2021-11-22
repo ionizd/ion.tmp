@@ -4,12 +4,12 @@ namespace Ion.Extensions;
 
 public static class IntExtensions
 {
-    public static TimeSpan Seconds(this uint @int)
+    public static TimeSpan Seconds(this int @int)
     {
         return TimeSpan.FromSeconds(@int);
     }
 
-    public static TimeSpan MilliSeconds(this uint @int)
+    public static TimeSpan Milliseconds(this int @int)
     {
         return TimeSpan.FromMilliseconds(@int);
     }

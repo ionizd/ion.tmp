@@ -1,6 +1,5 @@
-﻿using System;
+﻿using FluentAssertions;
 using System.Runtime.InteropServices;
-using FluentAssertions;
 
 namespace Ion.Testing
 {

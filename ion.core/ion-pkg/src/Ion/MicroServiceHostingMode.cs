@@ -3,6 +3,6 @@ namespace Ion;
 public enum MicroServiceHostingMode
 {
     Process,
-    Docker,
+    Container,
     Kubernetes
 }
