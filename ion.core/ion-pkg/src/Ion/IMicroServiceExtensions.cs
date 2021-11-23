@@ -18,6 +18,14 @@ public static class IMicroServiceExtensions
 
         service.ConfigureActions.Add(action);
 
+        if(service.Environment.IsDevelopment())
+        {
+            service.ConfigureActions.Add(svc =>
+            {
+                svc.AddMiddlewareAnalysis();
+            });
+        }
+
         return microservice;
     }
 
@@ -39,6 +47,7 @@ public static class IMicroServiceExtensions
 
         service.ConfigurePipelineActions.Add(app =>
         {
+            app.UseRouting();
             app.UseAuthorization();
         });
 

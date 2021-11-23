@@ -28,7 +28,6 @@ public static class IMicroServiceExtensions
 
         service.ConfigurePipelineActions.Add(app =>
         {
-            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

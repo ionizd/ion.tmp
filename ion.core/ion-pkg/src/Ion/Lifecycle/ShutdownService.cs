@@ -25,7 +25,7 @@ public class ShutdownService : IHostedService
         lifetime.ApplicationStopping.Register(async () => await ExecuteGracefulShutdown(DefaultTimeoutSeconds).ConfigureAwait(false));
         lifetime.ApplicationStopped.Register(async () =>
         {
-            logger.LogInformation("Service stopped");
+            logger.LogInformation("MicroService stopped");
             
             // Ensure logs are flushed
             await Task.Delay(1.Seconds());
@@ -43,12 +43,12 @@ public class ShutdownService : IHostedService
     {
         if (await TaskEx.TryWaitUntil(() => !service.HasActiveRequests,
             onFailure: () => {
-                logger.LogDebug($"Service has {service.Counter} active requests remaining");
+                logger.LogDebug($"MicroService has {service.Counter} active requests remaining");
             },
             frequency: 25.Milliseconds(),
             timeout: timeout.Seconds()).ConfigureAwait(false))
         {
-            logger.LogInformation("Service drained successfully");
+            logger.LogInformation("MicroService drained successfully");
         }
         else
         {

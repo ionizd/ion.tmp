@@ -27,7 +27,8 @@ namespace Ion.MicroServices.Api
 
             service.ConfigurePipelineActions.Add(app =>
             {               
-                app.UseRouting();
+                
+                
                 app.UseEndpoints(endpoints =>
                 {
                     action(endpoints);

@@ -1,4 +1,5 @@
 using Ion.Exceptions;
+using Ion.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +33,8 @@ public class MicroService : MicroServiceBase, IMicroService
         ConfigureActions.Add((svc) => { 
             svc.AddSingleton<IMicroService>(this);
             svc.AddAuthorization();
+            svc.AddLogging(logger => logger.AddConsole());
+            svc.Configure<HostOptions>(options => options.ShutdownTimeout = 60.Seconds());
         });
     }
 
