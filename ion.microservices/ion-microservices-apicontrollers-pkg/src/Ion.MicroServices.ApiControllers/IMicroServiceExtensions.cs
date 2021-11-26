@@ -1,6 +1,7 @@
 ﻿using Ion.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 namespace Ion.MicroServices.ApiControllers;
 
@@ -17,17 +18,22 @@ public static class IMicroServiceExtensions
         {
             svc.AddControllers();
             svc.AddEndpointsApiExplorer();
-            svc.AddSwaggerGen();
+            svc.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = microservice.Name, Version = "v1" });
+            });
         });
 
         service.UseDefaultMicroServicePipeline(developmentOnlyPipeline: app => 
         {
             app.UseSwagger();
             app.UseSwaggerUI();
-        });        
-
+        });
+       
         service.ConfigurePipelineActions.Add(app =>
         {
+            app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

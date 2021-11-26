@@ -1,5 +1,6 @@
 using Ion.Exceptions;
 using Ion.Extensions;
+using Ion.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,12 +31,12 @@ public class MicroService : MicroServiceBase, IMicroService
             Logger = logger;
         }
 
-        ConfigureActions.Add((svc) => { 
-            svc.AddSingleton<IMicroService>(this);
-            svc.AddAuthorization();
-            svc.AddLogging(logger => logger.AddConsole());
-            svc.Configure<HostOptions>(options => options.ShutdownTimeout = 60.Seconds());
-        });
+        //ConfigureActions.Add((svc) => { 
+        //    svc.AddSingleton<IMicroService>(this);
+        //    //svc.AddAuthorization();
+        //    svc.AddLogging(logger => logger.AddConsole());
+        //    svc.Configure<HostOptions>(options => options.ShutdownTimeout = 60.Seconds());
+        //});
     }
 
     public CancellationTokenSource CancellationTokenSource { get; } = new CancellationTokenSource();
@@ -75,7 +76,7 @@ public class MicroService : MicroServiceBase, IMicroService
     {
         var host = global::Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
             .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseConsoleLifetime()                        
+            .UseConsoleLifetime()
             .ConfigureAppConfiguration((cfg) =>
             {
                 if (configuration != null)
@@ -92,17 +93,30 @@ public class MicroService : MicroServiceBase, IMicroService
                         .AddEnvironmentVariables()
                         .AddCommandLine(args);
                 }
-            })
-            .ConfigureServices(svc =>
+            })                   
+            .ConfigureWebHostDefaults(app => 
             {
-                ConfigureActions.ForEach(action => action(svc));
-            })
-            .ConfigureWebHostDefaults(app =>
-            {
+                app.ConfigureServices(svc => 
+                {
+                    svc.AddSingleton<IMicroService>(this);
+                    svc.AddAuthorization();
+                    svc.AddLogging(logger => logger.AddConsole());
+                    svc.Configure<HostOptions>(options => options.ShutdownTimeout = 60.Seconds());
+                });
                 app.UseStartup<Startup>();
-            })
+            })            
             .Build();        
 
         return host;
-    }    
+    }
+
+    public static class Middleware
+    {
+        public static Action<IApplicationBuilder> MicroServiceLifetimeMiddlewares = (app) =>
+        {
+            app.UseMiddleware<StartupMiddleware>();
+            app.UseMiddleware<ReadinessMiddleware>();
+            app.UseMiddleware<ActiveRequestsMiddleware>();
+        };
+    }
 }

@@ -34,6 +34,8 @@ public static class IMicroServiceExtensions
 
         service.ConfigurePipelineActions.Add(app =>
         {
+            app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints => 
             {
                 endpoints.MapGraphQL("/graphql");

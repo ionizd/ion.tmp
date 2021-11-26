@@ -1,4 +1,6 @@
-namespace Ion.MicroServices.ApiControllers.Demo
+using System;
+
+namespace net6ihost
 {
     public class WeatherForecast
     {
@@ -8,6 +10,6 @@ namespace Ion.MicroServices.ApiControllers.Demo
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
-        public string? Summary { get; set; }
+        public string Summary { get; set; }
     }
 }

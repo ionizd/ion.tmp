@@ -12,7 +12,7 @@ namespace Ion.MicroServices.Api
 
             service.ValidatePipelineModeNotSet();
 
-            service.ConfigureActions.Add(IServiceCollectionExtensions.ConfigureMicroServiceLifetime);
+            service.ConfigureActions.Add(MicroService.Middleware.MicroServiceLifetimeMiddlewares);
             service.ConfigureActions.Add(svc =>
             {
                 svc.AddEndpointsApiExplorer();
@@ -26,9 +26,9 @@ namespace Ion.MicroServices.Api
             });
 
             service.ConfigurePipelineActions.Add(app =>
-            {               
-                
-                
+            {
+                app.UseRouting();
+                app.UseAuthorization();
                 app.UseEndpoints(endpoints =>
                 {
                     action(endpoints);

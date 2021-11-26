@@ -43,13 +43,7 @@ public static class IMicroServiceExtensions
             service.ConfigurePipelineActions.Add(developmentOnlyPipeline);
         }
 
-        service.ConfigurePipelineActions.Add(IApplicationBuilderExtensions.UseMicroServiceLifetimeMiddleware);
-
-        service.ConfigurePipelineActions.Add(app =>
-        {
-            app.UseRouting();
-            app.UseAuthorization();
-        });
+        service.ConfigurePipelineActions.Add(MicroService.Middleware.MicroServiceLifetimeMiddlewares);       
 
         return microservice;
     }
