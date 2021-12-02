@@ -67,7 +67,7 @@ public class MicroServiceTests
                 .InTestClass<MicroServiceTests>()
                 .ConfigureServices(services =>
                 {
-                    services.AddHostedStartupService<TestData.Sec3DelayStartupService>();
+                    services.AddHostedStartupService<TestData.Sec2DelayStartupService>();
                 })
                 .ConfigureDefaultServicePipeline();
 
@@ -79,6 +79,31 @@ public class MicroServiceTests
             service.ShouldStart(5000.Milliseconds());
 
             await task;            
+        }
+
+        [Fact]
+        [UnitTest]
+        public async void GivenRunAsyncIsInvoked_WhenFailingIHostedStartupServicesAreUsed_ThenServiceShouldFailToStart()
+        {
+            // Arrange
+            var config = new ConfigurationBuilder().Build();
+
+            var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
+                .InTestClass<MicroServiceTests>()
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedStartupService<TestData.FailingSec2DelayStartupService>();
+                })
+                .ConfigureDefaultServicePipeline();
+
+            service.CancellationTokenSource.CancelAfter(1000);
+
+            // Act & Assert
+            var task = service.RunAsync(config);
+
+            service.ShouldFailToStart(5000.Milliseconds());
+
+            await task;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Ion.Tests;
 
 internal static class TestData
 {
-    internal class Sec3DelayStartupService : IHostedStartupService
+    internal class Sec2DelayStartupService : IHostedStartupService
     {
         public bool Completed { get; set; } = false;
 
@@ -16,6 +16,18 @@ internal static class TestData
             await Task.Delay(2.Seconds());
 
             Completed = true;
+        }
+    }
+
+    internal class FailingSec2DelayStartupService : IHostedStartupService
+    {
+        public bool Completed { get; set; } = false;
+
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            await Task.Delay(2.Seconds());
+
+            throw new Ion.Exceptions.ConfigurationException("test configuration exception");
         }
     }
 }
