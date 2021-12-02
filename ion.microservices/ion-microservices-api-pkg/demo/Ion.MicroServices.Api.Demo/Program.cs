@@ -1,4 +1,5 @@
 using Ion;
+using Ion.MicroServices;
 using Ion.MicroServices.Api;
 
 var summaries = new[]

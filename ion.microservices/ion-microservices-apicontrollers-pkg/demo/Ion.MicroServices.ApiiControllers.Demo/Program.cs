@@ -1,4 +1,5 @@
 using Ion;
+using Ion.MicroServices;
 using Ion.MicroServices.ApiControllers;
 
 var service = new MicroService("ion-microservices-apicontrollers-demo")

@@ -23,7 +23,7 @@ public static class IMicroServiceExtensions
             server.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = service.Environment.IsDevelopment());
         });
 
-        service.UseDefaultMicroServicePipeline(developmentOnlyPipeline: app =>
+        service.UseCoreMicroServicePipeline(developmentOnlyPipeline: app =>
         {
             app.UseVoyager(new VoyagerOptions()
             {

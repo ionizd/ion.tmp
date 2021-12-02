@@ -11,4 +11,8 @@
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ion-pkg\src\Ion\Ion.csproj" />
+  </ItemGroup>
 </Project>

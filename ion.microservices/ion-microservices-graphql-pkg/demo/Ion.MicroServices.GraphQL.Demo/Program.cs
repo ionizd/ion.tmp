@@ -1,4 +1,5 @@
 using Ion;
+using Ion.MicroServices;
 using Ion.MicroServices.GraphQL;
 using Ion.MicroServices.GraphQL.Demo.Graph;
 using Ion.MicroServices.GraphQL.Demo.WeatherForecasting;

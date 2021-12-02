@@ -12,14 +12,14 @@ namespace Ion.MicroServices.Api
 
             service.ValidatePipelineModeNotSet();
 
-            service.ConfigureActions.Add(MicroService.Middleware.MicroServiceLifetimeMiddlewares);
+            service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
             service.ConfigureActions.Add(svc =>
             {
                 svc.AddEndpointsApiExplorer();
                 svc.AddSwaggerGen();
             });
 
-            service.UseDefaultMicroServicePipeline(developmentOnlyPipeline: app =>
+            service.UseCoreMicroServicePipeline(developmentOnlyPipeline: app =>
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();

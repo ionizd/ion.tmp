@@ -65,7 +65,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{A4CEDAC8-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.GraphQL.Demo", "ion.microservices\ion-microservices-graphql-pkg\demo\Ion.MicroServices.GraphQL.Demo\Ion.MicroServices.GraphQL.Demo.csproj", "{BF208DA9-C4E9-4A1A-B625-FC12471741D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net6ihost", "net6ihost\net6ihost.csproj", "{1F25E34A-0C1C-4631-9265-E68B54180288}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{19A77EA6-C7BF-4672-A280-F6A29C2C8BB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.Microservices.Demo", "ion.core\ion-pkg\demo\Ion.Microservices.Demo\Ion.Microservices.Demo.csproj", "{EB49661D-812D-48D8-9232-811B4668F166}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,10 +119,10 @@ Global
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F25E34A-0C1C-4631-9265-E68B54180288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F25E34A-0C1C-4631-9265-E68B54180288}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F25E34A-0C1C-4631-9265-E68B54180288}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F25E34A-0C1C-4631-9265-E68B54180288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB49661D-812D-48D8-9232-811B4668F166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB49661D-812D-48D8-9232-811B4668F166}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB49661D-812D-48D8-9232-811B4668F166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB49661D-812D-48D8-9232-811B4668F166}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,7 +156,8 @@ Global
 		{0B14C616-369C-45C6-8944-D33AA935A8F5} = {4853B384-0A97-48F4-93D5-C4B7E1DA2CBF}
 		{A4CEDAC8-C6F4-4F8D-893D-EFFE412B4FB3} = {FAED669B-88F2-4B25-9432-B86EBE1C2843}
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7} = {A4CEDAC8-C6F4-4F8D-893D-EFFE412B4FB3}
-		{1F25E34A-0C1C-4631-9265-E68B54180288} = {C196C4ED-E003-4D1F-A2B9-85C0A1320124}
+		{19A77EA6-C7BF-4672-A280-F6A29C2C8BB5} = {3A3CC6C2-A391-4C25-9499-A703424F6E61}
+		{EB49661D-812D-48D8-9232-811B4668F166} = {19A77EA6-C7BF-4672-A280-F6A29C2C8BB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A5B145F-29A4-4EE8-BAB3-29FCB87D36A1}

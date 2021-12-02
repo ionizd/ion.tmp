@@ -1,9 +1,10 @@
+using FluentAssertions;
+using Ion.Extensions;
+using Ion.MicroServices;
+using Ion.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
-using FluentAssertions;
-using Ion.MicroServices.ApiControllers;
-using Ion.Testing;
 
 namespace Ion.Tests;
 
@@ -15,17 +16,45 @@ public class MicroServiceTests
 
         [Fact]
         [UnitTest]
-        public async void GivenConfigureWebApiControllersPipelineIsUsed_WhenRunAsyncIsInvoked_ThenServiceStartsInWebApiControllersMode()
+        public async void GivenConfigureDefaultServicePipelineIsUsed_WhenRunAsyncIsInvoked_ThenServiceStartsInNoneMode()
         {
+            // Arrange
             var config = new ConfigurationBuilder().Build();            
 
             var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
-                .ConfigureApiControllerPipeline();
+                .InTestClass<MicroServiceTests>()
+                .ConfigureDefaultServicePipeline();
 
-            service.CancellationTokenSource.CancelAfter(2000);
+            service.CancellationTokenSource.CancelAfter(1000);
+
+            // Act
             await service.RunAsync(config);
 
-            service.PipelineMode.Should().Be(MicroServicePipelineMode.ApiControllers);
+            // Assert
+            service.PipelineMode.Should().Be(MicroServicePipelineMode.None);
+        }
+
+        [Fact]
+        [UnitTest]
+        public async void GiveRunAsyncIsInvoked_WhenNoIHostedStartupServicesAreUsed_ThenServiceShouldStartImmediately()
+        {
+            // Arrange
+            var config = new ConfigurationBuilder().Build();
+
+            var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
+                .InTestClass<MicroServiceTests>()
+                .ConfigureDefaultServicePipeline();
+
+            service.CancellationTokenSource.CancelAfter(1000);
+
+            
+
+            // Act & Assert
+            var task = service.RunAsync(config);
+            
+            service.ShouldStart(500.Milliseconds());
+
+            await task;
         }
     }
 }

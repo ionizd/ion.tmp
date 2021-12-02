@@ -1,6 +1,5 @@
 using Ion.Exceptions;
 using Ion.Extensions;
-using Ion.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,12 +9,13 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ion;
 
-public class MicroService : MicroServiceBase, IMicroService
+public partial class MicroService : MicroServiceBase, IMicroService
 {
     public bool ExternalLogger = true;
 
@@ -31,12 +31,13 @@ public class MicroService : MicroServiceBase, IMicroService
             Logger = logger;
         }
 
-        //ConfigureActions.Add((svc) => { 
-        //    svc.AddSingleton<IMicroService>(this);
-        //    //svc.AddAuthorization();
-        //    svc.AddLogging(logger => logger.AddConsole());
-        //    svc.Configure<HostOptions>(options => options.ShutdownTimeout = 60.Seconds());
-        //});
+        ConfigureActions.Add((svc) =>
+        {
+            svc.AddSingleton<IMicroService>(this);
+            svc.AddAuthorization();
+            svc.AddLogging(logger => logger.AddConsole());
+            svc.Configure<HostOptions>(options => options.ShutdownTimeout = 60.Seconds());
+        });
     }
 
     public CancellationTokenSource CancellationTokenSource { get; } = new CancellationTokenSource();
@@ -46,6 +47,8 @@ public class MicroService : MicroServiceBase, IMicroService
     public MicroServicePipelineMode PipelineMode { get; set; } = MicroServicePipelineMode.NotSet;
     internal List<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
     internal List<Action<IApplicationBuilder>> ConfigurePipelineActions { get; } = new List<Action<IApplicationBuilder>>();
+
+    internal Func<Assembly> MicroServiceEntrypointAssemblyProvider { get; set; } = () => Assembly.GetEntryAssembly();
     private ILogger<IMicroService> Logger { get; set; }
     public Task InitializeAsync(IConfigurationRoot configuration = null, params string[] args)
     {
@@ -59,7 +62,7 @@ public class MicroService : MicroServiceBase, IMicroService
 
         try
         {
-            if(PipelineMode == MicroServicePipelineMode.NotSet) 
+            if (PipelineMode == MicroServicePipelineMode.NotSet)
             {
                 throw new ConfigurationException(Constants.Errors.PipelineNotSet);
             }
@@ -93,30 +96,29 @@ public class MicroService : MicroServiceBase, IMicroService
                         .AddEnvironmentVariables()
                         .AddCommandLine(args);
                 }
-            })                   
-            .ConfigureWebHostDefaults(app => 
+            })
+            .ConfigureLogging((logging) =>
             {
-                app.ConfigureServices(svc => 
-                {
-                    svc.AddSingleton<IMicroService>(this);
-                    svc.AddAuthorization();
-                    svc.AddLogging(logger => logger.AddConsole());
-                    svc.Configure<HostOptions>(options => options.ShutdownTimeout = 60.Seconds());
-                });
-                app.UseStartup<Startup>();
-            })            
-            .Build();        
+                logging.AddConsole();
+            })
+            .ConfigureWebHostDefaults(app =>
+            {
+                // (!) Important, .UseSettings MUST be called AFTER Configure
+                // See: https://github.com/dotnet/aspnetcore/issues/38672
+                app
+                    .ConfigureServices(services => ConfigureActions.ForEach(action => action(services)))
+                    .Configure(app =>
+                    {
+                        /* TODO:
+                         var listener = new TestDiagnosticListener();
+                         diagnosticListener.SubscribeWithAdapter(listener);
+                         */
+                        ConfigurePipelineActions.ForEach(action => action(app));
+                    })
+                    .UseSetting(WebHostDefaults.ApplicationKey, MicroServiceEntrypointAssemblyProvider().FullName);
+            })
+            .Build();
 
         return host;
-    }
-
-    public static class Middleware
-    {
-        public static Action<IApplicationBuilder> MicroServiceLifetimeMiddlewares = (app) =>
-        {
-            app.UseMiddleware<StartupMiddleware>();
-            app.UseMiddleware<ReadinessMiddleware>();
-            app.UseMiddleware<ActiveRequestsMiddleware>();
-        };
     }
 }

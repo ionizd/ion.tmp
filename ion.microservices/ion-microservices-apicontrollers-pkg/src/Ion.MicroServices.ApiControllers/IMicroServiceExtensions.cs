@@ -1,5 +1,4 @@
-﻿using Ion.Extensions;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
@@ -13,7 +12,7 @@ public static class IMicroServiceExtensions
 
         service.ValidatePipelineModeNotSet();
 
-        service.ConfigureActions.Add(IServiceCollectionExtensions.ConfigureMicroServiceLifetime);
+        service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
         service.ConfigureActions.Add(svc =>
         {
             svc.AddControllers();
@@ -24,7 +23,7 @@ public static class IMicroServiceExtensions
             });
         });
 
-        service.UseDefaultMicroServicePipeline(developmentOnlyPipeline: app => 
+        service.UseCoreMicroServicePipeline(developmentOnlyPipeline: app => 
         {
             app.UseSwagger();
             app.UseSwaggerUI();
