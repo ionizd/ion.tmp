@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Ion.Extensions;
+using Ion.Lifecycle;
 using Ion.MicroServices;
 using Ion.Testing;
 using Microsoft.Extensions.Configuration;
@@ -36,7 +37,7 @@ public class MicroServiceTests
 
         [Fact]
         [UnitTest]
-        public async void GiveRunAsyncIsInvoked_WhenNoIHostedStartupServicesAreUsed_ThenServiceShouldStartImmediately()
+        public async void GivenRunAsyncIsInvoked_WhenNoIHostedStartupServicesAreUsed_ThenServiceShouldStartImmediately()
         {
             // Arrange
             var config = new ConfigurationBuilder().Build();
@@ -45,9 +46,7 @@ public class MicroServiceTests
                 .InTestClass<MicroServiceTests>()
                 .ConfigureDefaultServicePipeline();
 
-            service.CancellationTokenSource.CancelAfter(1000);
-
-            
+            service.CancellationTokenSource.CancelAfter(1000);            
 
             // Act & Assert
             var task = service.RunAsync(config);
@@ -55,6 +54,31 @@ public class MicroServiceTests
             service.ShouldStart(500.Milliseconds());
 
             await task;
+        }
+
+        [Fact]
+        [UnitTest]
+        public async void GivenRunAsyncIsInvoked_WhenNonFailingIHostedStartupServicesAreUsed_ThenServiceShouldStart()
+        {
+            // Arrange
+            var config = new ConfigurationBuilder().Build();
+
+            var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
+                .InTestClass<MicroServiceTests>()
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedStartupService<TestData.Sec3DelayStartupService>();
+                })
+                .ConfigureDefaultServicePipeline();
+
+            service.CancellationTokenSource.CancelAfter(1000);
+
+            // Act & Assert
+            var task = service.RunAsync(config);
+
+            service.ShouldStart(5000.Milliseconds());
+
+            await task;            
         }
     }
 }
