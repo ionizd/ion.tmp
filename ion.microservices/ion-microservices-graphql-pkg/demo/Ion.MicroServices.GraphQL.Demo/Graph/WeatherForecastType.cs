@@ -1,5 +1,5 @@
 ﻿using HotChocolate.Types;
-using Ion.MicroServices.GraphQL.Demo.WeatherForecasting;
+using Ion.MicroServices.Demo.WeatherForecasting;
 
 namespace Ion.MicroServices.GraphQL.Demo.Graph;
 

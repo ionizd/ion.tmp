@@ -14,7 +14,7 @@ public static class IMicroServiceExtensions
 
         service.ValidatePipelineModeNotSet();
 
-        service.ConfigureActions.Add(IServiceCollectionExtensions.ConfigureMicroServiceLifetime);
+        service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
         service.ConfigureActions.Add(svc =>
         {
             var server = svc.AddGraphQLServer();

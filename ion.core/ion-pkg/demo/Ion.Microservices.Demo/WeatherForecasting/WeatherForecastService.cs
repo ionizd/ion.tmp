@@ -1,4 +1,4 @@
-﻿namespace Ion.MicroServices.GraphQL.Demo.WeatherForecasting;
+﻿namespace Ion.MicroServices.Demo.WeatherForecasting;
 
 public class WeatherForecastService : IWeatherForecastService
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ion.MicroServices.GraphQL.Demo.WeatherForecasting;
+namespace Ion.MicroServices.Demo.WeatherForecasting;
 
 public record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
 {

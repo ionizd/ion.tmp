@@ -67,7 +67,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.GraphQL.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{19A77EA6-C7BF-4672-A280-F6A29C2C8BB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.Microservices.Demo", "ion.core\ion-pkg\demo\Ion.Microservices.Demo\Ion.Microservices.Demo.csproj", "{EB49661D-812D-48D8-9232-811B4668F166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Microservices.Demo", "ion.core\ion-pkg\demo\Ion.Microservices.Demo\Ion.Microservices.Demo.csproj", "{EB49661D-812D-48D8-9232-811B4668F166}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Grpc", "ion.microservices\ion-microservices-grpc-pkg\src\Ion.MicroServices.Grpc\Ion.MicroServices.Grpc.csproj", "{1E98688B-386C-41B1-ADA5-E9BB87030FCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{062D05AE-28E9-46C4-B823-5419523B922F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Demo.Grpc", "ion.microservices\ion-microservices-grpc-pkg\demo\Ion.MicroServices.Demo.Grpc\Ion.MicroServices.Demo.Grpc.csproj", "{CE153663-AE75-46EC-91A6-B469E14BD3B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.MicroServices.Demo.GrpcCodeFirst", "ion.microservices\ion-microservices-grpc-pkg\demo\Ion.MicroServices.Demo.GrpcCodeFirst\Ion.MicroServices.Demo.GrpcCodeFirst.csproj", "{2A802FDB-8C24-4A0D-A3AA-29555632CB81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +131,18 @@ Global
 		{EB49661D-812D-48D8-9232-811B4668F166}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB49661D-812D-48D8-9232-811B4668F166}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB49661D-812D-48D8-9232-811B4668F166}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E98688B-386C-41B1-ADA5-E9BB87030FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E98688B-386C-41B1-ADA5-E9BB87030FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E98688B-386C-41B1-ADA5-E9BB87030FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E98688B-386C-41B1-ADA5-E9BB87030FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE153663-AE75-46EC-91A6-B469E14BD3B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE153663-AE75-46EC-91A6-B469E14BD3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE153663-AE75-46EC-91A6-B469E14BD3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE153663-AE75-46EC-91A6-B469E14BD3B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A802FDB-8C24-4A0D-A3AA-29555632CB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A802FDB-8C24-4A0D-A3AA-29555632CB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A802FDB-8C24-4A0D-A3AA-29555632CB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A802FDB-8C24-4A0D-A3AA-29555632CB81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,6 +178,10 @@ Global
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7} = {A4CEDAC8-C6F4-4F8D-893D-EFFE412B4FB3}
 		{19A77EA6-C7BF-4672-A280-F6A29C2C8BB5} = {3A3CC6C2-A391-4C25-9499-A703424F6E61}
 		{EB49661D-812D-48D8-9232-811B4668F166} = {19A77EA6-C7BF-4672-A280-F6A29C2C8BB5}
+		{1E98688B-386C-41B1-ADA5-E9BB87030FCB} = {44E5A341-CC4D-4B7E-A290-28F1CCBFAAE7}
+		{062D05AE-28E9-46C4-B823-5419523B922F} = {3FCFCFEC-2C6D-4F61-8A98-3B0672FD84D0}
+		{CE153663-AE75-46EC-91A6-B469E14BD3B6} = {062D05AE-28E9-46C4-B823-5419523B922F}
+		{2A802FDB-8C24-4A0D-A3AA-29555632CB81} = {062D05AE-28E9-46C4-B823-5419523B922F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A5B145F-29A4-4EE8-BAB3-29FCB87D36A1}
