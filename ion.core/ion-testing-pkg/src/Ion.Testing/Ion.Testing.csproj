@@ -13,6 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ion-pkg\src\Ion\Ion.csproj" />
+    <ProjectReference Include="..\..\..\ion-abstractions-pkg\src\Ion.Abstractions\Ion.Abstractions.csproj" />
   </ItemGroup>
 </Project>

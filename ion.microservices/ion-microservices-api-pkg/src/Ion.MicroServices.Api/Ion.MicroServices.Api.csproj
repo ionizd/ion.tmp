@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\ion.core\ion-pkg\src\Ion\Ion.csproj" />
+    <ProjectReference Include="..\..\..\ion-microservices-pkg\src\Ion.MicroServices\Ion.MicroServices.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,9 @@
 ﻿using FluentAssertions.Extensions;
-using Ion.Lifecycle;
+using Ion.MicroServices.Lifecycle;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Ion.Tests;
+namespace Ion.MicroServices.Tests;
 
 internal static class TestData
 {

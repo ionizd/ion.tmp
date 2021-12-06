@@ -1,8 +1,7 @@
-﻿using Ion.Lifecycle;
+﻿using Ion.MicroServices.Lifecycle;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
-namespace Ion;
+namespace Ion.MicroServices;
 
 public partial class MicroService
 {

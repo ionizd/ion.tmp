@@ -1,4 +1,4 @@
-using Ion.Exceptions;
+﻿using Ion.Exceptions;
 using Ion.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,14 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Ion;
+namespace Ion.MicroServices;
 
 public partial class MicroService : MicroServiceBase, IMicroService
 {

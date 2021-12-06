@@ -1,8 +1,7 @@
 ﻿using Ion.Middleware;
 using Microsoft.AspNetCore.Builder;
-using System;
 
-namespace Ion;
+namespace Ion.MicroServices;
 
 public partial class MicroService
 {

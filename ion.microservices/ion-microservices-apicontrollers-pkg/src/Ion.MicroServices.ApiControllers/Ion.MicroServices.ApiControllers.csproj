@@ -7,15 +7,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\ion.core\ion-pkg\src\Ion\Ion.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\ion-microservices-pkg\src\Ion.MicroServices\Ion.MicroServices.csproj" />
 	</ItemGroup>
 
 </Project>

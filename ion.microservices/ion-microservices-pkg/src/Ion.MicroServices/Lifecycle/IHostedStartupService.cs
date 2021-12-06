@@ -1,7 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-
-namespace Ion.Lifecycle;
+﻿namespace Ion.MicroServices.Lifecycle;
 
 public interface IHostedStartupService
 {

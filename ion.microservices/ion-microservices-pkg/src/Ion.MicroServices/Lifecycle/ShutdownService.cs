@@ -1,11 +1,8 @@
 ﻿using Ion.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Ion.Lifecycle;
+namespace Ion.MicroServices.Lifecycle;
 
 public class ShutdownService : IHostedService
 {
@@ -26,7 +23,7 @@ public class ShutdownService : IHostedService
         lifetime.ApplicationStopped.Register(async () =>
         {
             logger.LogInformation("MicroService stopped");
-            
+
             // Ensure logs are flushed
             await Task.Delay(1.Seconds());
         });
@@ -42,7 +39,8 @@ public class ShutdownService : IHostedService
     private async Task ExecuteGracefulShutdown(int timeout)
     {
         if (await TaskEx.TryWaitUntil(() => !service.HasActiveRequests,
-            onFailure: () => {
+            onFailure: () =>
+            {
                 logger.LogDebug($"MicroService has {service.Counter} active requests remaining");
             },
             frequency: 25.Milliseconds(),
@@ -53,6 +51,6 @@ public class ShutdownService : IHostedService
         else
         {
             logger.LogError($"Failed to drain service within {timeout} [s]");
-        }        
+        }
     }
 }

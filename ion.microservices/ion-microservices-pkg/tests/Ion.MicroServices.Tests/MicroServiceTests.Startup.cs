@@ -1,13 +1,13 @@
 using FluentAssertions;
 using Ion.Extensions;
-using Ion.Lifecycle;
 using Ion.MicroServices;
+using Ion.MicroServices.Lifecycle;
 using Ion.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
-namespace Ion.Tests;
+namespace Ion.MicroServices.Tests;
 
 public class MicroServiceTests
 {

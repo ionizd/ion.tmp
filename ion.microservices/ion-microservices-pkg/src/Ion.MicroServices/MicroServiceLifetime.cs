@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Ion;
+namespace Ion.MicroServices;
 
 internal class MicroServiceLifetime : IMicroServiceLifetime
 {

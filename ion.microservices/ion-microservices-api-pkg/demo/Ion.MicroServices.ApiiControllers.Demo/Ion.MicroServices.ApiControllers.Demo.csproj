@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Ion.MicroServices.ApiControllers\Ion.MicroServices.ApiControllers.csproj" />
+    <ProjectReference Include="..\..\src\Ion.MicroServices.Api\Ion.MicroServices.Api.csproj" />
   </ItemGroup>
 
 </Project>

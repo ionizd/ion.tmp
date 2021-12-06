@@ -1,10 +1,8 @@
-﻿using System.Threading;
-
-namespace Ion.Lifecycle;
+﻿namespace Ion.MicroServices.Lifecycle;
 
 internal class ActiveRequestsService : IActiveRequestsService
 {
-    private long counter = 0L;    
+    private long counter = 0L;
 
     public long Counter
     {

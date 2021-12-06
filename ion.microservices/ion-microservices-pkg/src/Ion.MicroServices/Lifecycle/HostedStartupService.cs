@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace Ion.Lifecycle;
+namespace Ion.MicroServices.Lifecycle;
 
 public abstract class HostedStartupService<T> : IHostedStartupService
         where T : class, IHostedStartupService

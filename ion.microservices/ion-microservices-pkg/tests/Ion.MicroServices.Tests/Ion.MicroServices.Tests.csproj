@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,9 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\ion.microservices\ion-microservices-apicontrollers-pkg\src\Ion.MicroServices.ApiControllers\Ion.MicroServices.ApiControllers.csproj" />
-    <ProjectReference Include="..\..\..\ion-testing-pkg\src\Ion.Testing\Ion.Testing.csproj" />
-    <ProjectReference Include="..\..\src\Ion\Ion.csproj" />
+    <ProjectReference Include="..\..\..\..\ion.core\ion-testing-pkg\src\Ion.Testing\Ion.Testing.csproj" />
+    <ProjectReference Include="..\..\..\..\ion.microservices\ion-microservices-pkg\src\Ion.MicroServices\Ion.MicroServices.csproj" />
   </ItemGroup>
 
 </Project>

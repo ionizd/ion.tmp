@@ -1,4 +1,4 @@
-﻿namespace Ion.Lifecycle;
+﻿namespace Ion.MicroServices.Lifecycle;
 
 public interface IActiveRequestsService
 {
