@@ -23,7 +23,7 @@ jobs:
         - windows-latest
         - macos-latest
         dotnet-version:
-        - '5.0.101'
+        - '6.0.100'
     steps:
     - uses: actions/checkout@v2
       with:
