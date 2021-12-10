@@ -78,6 +78,10 @@ jobs:
     - uses: actions/setup-dotnet@v1
       name: dotnet installer
       with:
+        dotnet-version: 5.0.403
+    - uses: actions/setup-dotnet@v1
+      name: dotnet installer
+      with:
         dotnet-version: ${{ env.NETCORE_VERSION }}
     - name: check pull_request.head.ref
       if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged }}
