@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>true</IsPackable>
      <RepositoryUrl>https://github.com/ionizd/ion</RepositoryUrl>
-    <PackageIconUrl>https://avatars.githubusercontent.com/u/35167581</PackageIconUrl>
+     <PackageIconUrl>https://avatars.githubusercontent.com/u/35167581</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

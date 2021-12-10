@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>    
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RepositoryUrl>https://github.com/ionizd/ion</RepositoryUrl>
+    <PackageIconUrl>https://avatars.githubusercontent.com/u/35167581</PackageIconUrl>
   </PropertyGroup>
 
    <ItemGroup>
