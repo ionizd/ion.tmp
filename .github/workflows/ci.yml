@@ -65,6 +65,10 @@ jobs:
     - uses: actions/setup-dotnet@v1
       name: dotnet installer
       with:
+        dotnet-version: 5.0.403
+    - uses: actions/setup-dotnet@v1
+      name: dotnet installer
+      with:
         dotnet-version: ${{ matrix.dotnet-version }}
     - id: buld-system
       uses: cloud-tek/actions/build-system@v0.6
