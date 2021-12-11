@@ -14,6 +14,7 @@ on:
     - closed
     branches:
     - main
+    - release/*
     paths:
       - ".github/workflows/publish.yml"
       - "build/**"

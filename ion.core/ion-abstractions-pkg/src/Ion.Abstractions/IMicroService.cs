@@ -18,4 +18,6 @@ public interface IMicroService
     string Name { get; }
     MicroServicePipelineMode PipelineMode { get; }
     Task RunAsync(IConfigurationRoot configuration = null, params string[] args);
+
+    IMicroService RegisterExtension<TExtension>() where TExtension : MicroServiceExtension, new();
 }
