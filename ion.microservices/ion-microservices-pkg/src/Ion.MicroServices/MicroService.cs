@@ -41,8 +41,6 @@ public partial class MicroService : MicroServiceBase, IMicroService
     public string Name { get; }
     public MicroServicePipelineMode PipelineMode { get; set; } = MicroServicePipelineMode.NotSet;
 
-    public IList<MicroServiceExtension> Extensions { get; set; } = new List<MicroServiceExtension>();
-    
     public IMicroService RegisterExtension<TExtension>()
         where TExtension : MicroServiceExtension, new()
     {

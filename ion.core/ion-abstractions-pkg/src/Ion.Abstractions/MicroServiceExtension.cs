@@ -12,7 +12,7 @@ public abstract class MicroServiceExtension
         return services;
     }
 
-    public virtual IApplicationBuilder Configure(IApplicationBuilder app, IWebHostEnvironment env, IMicroService microservice)
+    public virtual IApplicationBuilder Configure(IApplicationBuilder app, IMicroService microservice)
     {
         return app;
     }

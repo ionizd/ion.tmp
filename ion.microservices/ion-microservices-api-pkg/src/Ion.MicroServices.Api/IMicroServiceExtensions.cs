@@ -56,12 +56,14 @@ namespace Ion.MicroServices.Api
                 app.UseSwaggerUI();
             });
 
-            service.ConfigurePipelineActions.Add(app =>
-            {
-                app.UseRouting();
-                app.UseAuthorization();
-                app.UseEndpoints(endpointBuilder);
-            });            
+            service
+                .ConfigureExtensions()
+                .ConfigurePipelineActions.Add(app =>
+                {
+                    app.UseRouting();
+                    app.UseAuthorization();
+                    app.UseEndpoints(endpointBuilder);
+                });            
 
             return microservice;
         }
