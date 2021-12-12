@@ -45,8 +45,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{A4CEDAC8-C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.GraphQL.Demo", "ion.microservices\ion-microservices-graphql-pkg\demo\Ion.MicroServices.GraphQL.Demo\Ion.MicroServices.GraphQL.Demo.csproj", "{BF208DA9-C4E9-4A1A-B625-FC12471741D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Microservices.Demo", "ion.core\ion-pkg\demo\Ion.Microservices.Demo\Ion.Microservices.Demo.csproj", "{EB49661D-812D-48D8-9232-811B4668F166}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Grpc", "ion.microservices\ion-microservices-grpc-pkg\src\Ion.MicroServices.Grpc\Ion.MicroServices.Grpc.csproj", "{1E98688B-386C-41B1-ADA5-E9BB87030FCB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{062D05AE-28E9-46C4-B823-5419523B922F}"
@@ -79,6 +77,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.ApiControllers.Demo", "ion.microservices\ion-microservices-api-pkg\demo\Ion.MicroServices.ApiiControllers.Demo\Ion.MicroServices.ApiControllers.Demo.csproj", "{F4A1D988-C2A1-439A-8599-46602100D3F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Tests", "ion.microservices\ion-microservices-pkg\tests\Ion.MicroServices.Tests\Ion.MicroServices.Tests.csproj", "{1855F90A-DB7B-412F-9E0F-368B5730B834}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Microservices.Demo", "ion.microservices\ion-microservices-pkg\demo\Ion.Microservices.Demo\Ion.Microservices.Demo.csproj", "{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,10 +114,6 @@ Global
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB49661D-812D-48D8-9232-811B4668F166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB49661D-812D-48D8-9232-811B4668F166}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB49661D-812D-48D8-9232-811B4668F166}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB49661D-812D-48D8-9232-811B4668F166}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E98688B-386C-41B1-ADA5-E9BB87030FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E98688B-386C-41B1-ADA5-E9BB87030FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E98688B-386C-41B1-ADA5-E9BB87030FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -146,6 +142,10 @@ Global
 		{1855F90A-DB7B-412F-9E0F-368B5730B834}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1855F90A-DB7B-412F-9E0F-368B5730B834}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1855F90A-DB7B-412F-9E0F-368B5730B834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,7 +169,6 @@ Global
 		{0B14C616-369C-45C6-8944-D33AA935A8F5} = {4853B384-0A97-48F4-93D5-C4B7E1DA2CBF}
 		{A4CEDAC8-C6F4-4F8D-893D-EFFE412B4FB3} = {FAED669B-88F2-4B25-9432-B86EBE1C2843}
 		{BF208DA9-C4E9-4A1A-B625-FC12471741D7} = {A4CEDAC8-C6F4-4F8D-893D-EFFE412B4FB3}
-		{EB49661D-812D-48D8-9232-811B4668F166} = {BD1C4C8B-C64C-41C0-9B5E-1F7C20875C8F}
 		{1E98688B-386C-41B1-ADA5-E9BB87030FCB} = {44E5A341-CC4D-4B7E-A290-28F1CCBFAAE7}
 		{062D05AE-28E9-46C4-B823-5419523B922F} = {3FCFCFEC-2C6D-4F61-8A98-3B0672FD84D0}
 		{CE153663-AE75-46EC-91A6-B469E14BD3B6} = {062D05AE-28E9-46C4-B823-5419523B922F}
@@ -184,6 +183,7 @@ Global
 		{118EFC63-5FDD-4B52-81A9-92F3870FAD35} = {C7FC31C5-2AD8-4692-B27D-5B51F2AD8D86}
 		{F4A1D988-C2A1-439A-8599-46602100D3F2} = {4853B384-0A97-48F4-93D5-C4B7E1DA2CBF}
 		{1855F90A-DB7B-412F-9E0F-368B5730B834} = {F146D767-87DB-45A3-B21F-5BC069D53EFC}
+		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7} = {BD1C4C8B-C64C-41C0-9B5E-1F7C20875C8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A5B145F-29A4-4EE8-BAB3-29FCB87D36A1}
