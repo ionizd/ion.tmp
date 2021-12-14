@@ -80,6 +80,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Microservices.Demo", "ion.microservices\ion-microservices-pkg\demo\Ion.Microservices.Demo\Ion.Microservices.Demo.csproj", "{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ion-microservices-job-pkg", "ion-microservices-job-pkg", "{25B26BA1-9CD4-4E25-BBB6-A2EAF4FF61A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{87EB8E1C-E46B-429D-983F-EA55FF4A24FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{E2030C68-5B35-40B0-8B39-E5822CC25980}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Job", "ion.microservices\ion-microsercvices-job-pkg\src\Ion.MicroServices.Job\Ion.MicroServices.Job.csproj", "{68742CB4-3C69-40A4-ACED-A7009A8F6F71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.MicroServices.Job.Demo", "ion.microservices\ion-microsercvices-job-pkg\demo\Ion.MicroServices.Job.Demo\Ion.MicroServices.Job.Demo.csproj", "{59376FCE-6302-4A7A-82CB-44A2AFD1B335}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -146,6 +156,14 @@ Global
 		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68742CB4-3C69-40A4-ACED-A7009A8F6F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68742CB4-3C69-40A4-ACED-A7009A8F6F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68742CB4-3C69-40A4-ACED-A7009A8F6F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68742CB4-3C69-40A4-ACED-A7009A8F6F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59376FCE-6302-4A7A-82CB-44A2AFD1B335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59376FCE-6302-4A7A-82CB-44A2AFD1B335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59376FCE-6302-4A7A-82CB-44A2AFD1B335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59376FCE-6302-4A7A-82CB-44A2AFD1B335}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -184,6 +202,11 @@ Global
 		{F4A1D988-C2A1-439A-8599-46602100D3F2} = {4853B384-0A97-48F4-93D5-C4B7E1DA2CBF}
 		{1855F90A-DB7B-412F-9E0F-368B5730B834} = {F146D767-87DB-45A3-B21F-5BC069D53EFC}
 		{CFDAA456-5FE4-4068-9FC2-A0D461955BE7} = {BD1C4C8B-C64C-41C0-9B5E-1F7C20875C8F}
+		{25B26BA1-9CD4-4E25-BBB6-A2EAF4FF61A3} = {D9230EE7-8C86-41C8-93B4-CBF40A807C05}
+		{87EB8E1C-E46B-429D-983F-EA55FF4A24FB} = {25B26BA1-9CD4-4E25-BBB6-A2EAF4FF61A3}
+		{E2030C68-5B35-40B0-8B39-E5822CC25980} = {25B26BA1-9CD4-4E25-BBB6-A2EAF4FF61A3}
+		{68742CB4-3C69-40A4-ACED-A7009A8F6F71} = {87EB8E1C-E46B-429D-983F-EA55FF4A24FB}
+		{59376FCE-6302-4A7A-82CB-44A2AFD1B335} = {E2030C68-5B35-40B0-8B39-E5822CC25980}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A5B145F-29A4-4EE8-BAB3-29FCB87D36A1}

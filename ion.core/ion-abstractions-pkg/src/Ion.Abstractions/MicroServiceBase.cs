@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Ion;
 
@@ -43,6 +45,8 @@ public abstract class MicroServiceBase
     public MicroServiceHostingMode HostingMode { get; init; }
 
     public string HostName { get; } = global::System.Environment.GetEnvironmentVariable(Constants.EnvironmentVariables.Hostname) ?? "localhost";
+
+    public List<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
 
     public string Id { get; } = System.Guid.NewGuid().ToString();
 
