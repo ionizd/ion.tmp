@@ -38,16 +38,18 @@ namespace Ion.MicroServices.Grpc
 
             service.UseCoreMicroServicePipeline();
 
-            service.ConfigurePipelineActions.Add(app =>
-            {
-                app.UseRouting();
-                app.UseAuthorization();
-                app.UseEndpoints(endpoints =>
+            service
+                .ConfigureExtensions()
+                .ConfigurePipelineActions.Add(app =>
                 {
-                    endpointsBuilder(endpoints);
-                    endpoints.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+                    app.UseRouting();
+                    app.UseAuthorization();
+                    app.UseEndpoints(endpoints =>
+                    {
+                        endpointsBuilder(endpoints);
+                        endpoints.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+                    });
                 });
-            });
 
             service.PipelineMode = MicroServicePipelineMode.Grpc;
 

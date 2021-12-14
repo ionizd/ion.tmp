@@ -32,7 +32,9 @@ public static class IMicroServiceExtensions
             });
         });
 
-        service.ConfigurePipelineActions.Add(app =>
+        service
+            .ConfigureExtensions()
+            .ConfigurePipelineActions.Add(app =>
         {
             app.UseRouting();
             app.UseAuthorization();
