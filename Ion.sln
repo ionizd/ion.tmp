@@ -86,9 +86,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{87EB8E1C-E46
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{E2030C68-5B35-40B0-8B39-E5822CC25980}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Job", "ion.microservices\ion-microsercvices-job-pkg\src\Ion.MicroServices.Job\Ion.MicroServices.Job.csproj", "{68742CB4-3C69-40A4-ACED-A7009A8F6F71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.MicroServices.Job", "ion.microservices\ion-microservices-job-pkg\src\Ion.MicroServices.Job\Ion.MicroServices.Job.csproj", "{68742CB4-3C69-40A4-ACED-A7009A8F6F71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.MicroServices.Job.Demo", "ion.microservices\ion-microsercvices-job-pkg\demo\Ion.MicroServices.Job.Demo\Ion.MicroServices.Job.Demo.csproj", "{59376FCE-6302-4A7A-82CB-44A2AFD1B335}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.MicroServices.Job.Demo", "ion.microservices\ion-microservices-job-pkg\demo\Ion.MicroServices.Job.Demo\Ion.MicroServices.Job.Demo.csproj", "{59376FCE-6302-4A7A-82CB-44A2AFD1B335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
