@@ -31,7 +31,7 @@ internal class JobHostedService : IHostedService
                     await Task.WhenAll(svcs.Select(s => s.StartAsync(cancellationToken)));
                 }
 
-                await Task.Delay(5000);
+                await Task.Delay(1000);
 
                 logger.LogInformation($"Job has finished executing all async IHostedJobService(s). Shutting down.");
             }
