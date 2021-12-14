@@ -96,8 +96,6 @@ public class MicroServiceTests
                 })
                 .ConfigureDefaultServicePipeline();
 
-            service.CancellationTokenSource.CancelAfter(1000);
-
             // Act & Assert
             var task = service.RunAsync(config);
 

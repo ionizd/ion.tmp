@@ -100,23 +100,23 @@ public static class IMicroServiceExtensions
 
         service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
         
-
         service.UseCoreMicroServicePipeline();
-
-        service.ConfigurePipelineActions.Add(app =>
-        {
-            app.UseRouting();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
+        service
+            .ConfigureExtensions()
+            .ConfigurePipelineActions.Add(app =>
             {
-                endpoints.MapGet("/*", (ctx) =>
+                app.UseRouting();
+                app.UseAuthorization();
+                app.UseEndpoints(endpoints =>
                 {
-                    ctx.Response.StatusCode = 404;
-                    return Task.CompletedTask;
+                    endpoints.MapGet("/*", (ctx) =>
+                    {
+                        ctx.Response.StatusCode = 404;
+                        return Task.CompletedTask;
+                    });
                 });
             });
-        });
-
+        
         service.PipelineMode = MicroServicePipelineMode.None;
 
         return service;

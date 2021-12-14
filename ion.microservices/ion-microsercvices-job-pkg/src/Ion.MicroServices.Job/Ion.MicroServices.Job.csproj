@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Ion.MicroServices.Api\Ion.MicroServices.Api.csproj" />
+    <ProjectReference Include="..\..\..\ion-microservices-pkg\src\Ion.MicroServices\Ion.MicroServices.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@ namespace Ion.MicroServices;
 
 public partial class MicroService : MicroServiceBase, IMicroService
 {
-    public bool ExternalLogger = true;
+    public bool ExternalLogger = false;
 
     public MicroService(string name) : this(name, null) { }
 
@@ -40,16 +40,28 @@ public partial class MicroService : MicroServiceBase, IMicroService
     public IMicroServiceLifetime Lifetime { get; } = new MicroServiceLifetime();
     public string Name { get; }
     public MicroServicePipelineMode PipelineMode { get; set; } = MicroServicePipelineMode.NotSet;
+
     internal List<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
+
     internal List<Action<IApplicationBuilder>> ConfigurePipelineActions { get; } = new List<Action<IApplicationBuilder>>();
 
     internal Func<Assembly> MicroServiceEntrypointAssemblyProvider { get; set; } = () => Assembly.GetEntryAssembly();
+
     private ILogger<IMicroService> Logger { get; set; }
+
     public Task InitializeAsync(IConfigurationRoot configuration = null, params string[] args)
     {
         Host = CreateHostBuilder(configuration, args);
 
         return Task.CompletedTask;
+    }
+
+    public IMicroService RegisterExtension<TExtension>()
+                            where TExtension : MicroServiceExtension, new()
+    {
+        Extensions.Add(new TExtension());
+
+        return this;
     }
     public async Task RunAsync(IConfigurationRoot configuration = null, params string[] args)
     {
