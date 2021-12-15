@@ -8,7 +8,7 @@ namespace Ion.MicroServices.Grpc
 {
     public static class IMicroServiceExtensions
     {
-        public static IMicroService ConfigureGrpcCodeFirstPipeline(this IMicroService microservice, Action<IEndpointRouteBuilder> endpointsBuilder)
+        public static IMicroService ConfigureGrpcPipeline(this IMicroService microservice, Action<IEndpointRouteBuilder> endpointsBuilder)
         {
             return microservice.ConfigureGrpcPipelineInternal(endpointsBuilder, configureGrpc: (services) => services.AddGrpc());
         }
