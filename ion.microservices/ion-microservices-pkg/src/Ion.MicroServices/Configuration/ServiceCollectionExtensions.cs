@@ -7,10 +7,25 @@ namespace Ion.MicroServices.Configuration;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection ConfigureWithValidation<TOptions>(this IServiceCollection services, IConfiguration config) where TOptions : class
-        => services.ConfigureWithValidation<TOptions>(global::Microsoft.Extensions.Options.Options.DefaultName, config);
+    public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, IConfigurationRoot configRoot, Func<string> sectionKeyProvider)
+        where TOptions : class
+    {
+        var section = configRoot.GetExistingSection(sectionKeyProvider());
 
-    public static IServiceCollection ConfigureWithValidation<TOptions>(this IServiceCollection services, string name, IConfiguration config) where TOptions : class
+        return services.ConfigureAndValidate<TOptions>(section);
+    }
+
+    public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, IConfigurationRoot configRoot, string name, Func<string> sectionKeyProvider)
+        where TOptions : class
+    {
+        var section = configRoot.GetExistingSection(sectionKeyProvider());
+
+        return services.ConfigureAndValidate<TOptions>(name, section);
+    }
+    public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, IConfiguration config) where TOptions : class
+        => services.ConfigureAndValidate<TOptions>(global::Microsoft.Extensions.Options.Options.DefaultName, config);
+
+    public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, string name, IConfiguration config) where TOptions : class
     {
         _ = config ?? throw new ArgumentNullException(nameof(config));
         services.Configure<TOptions>(name, config);
@@ -18,10 +33,10 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection ConfigureWithValidation<TOptions>(this IServiceCollection services, Action<TOptions> configureOptions) where TOptions : class
-        => services.ConfigureWithValidation<TOptions>(global::Microsoft.Extensions.Options.Options.DefaultName, configureOptions);
+    public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, Action<TOptions> configureOptions) where TOptions : class
+        => services.ConfigureAndValidate<TOptions>(global::Microsoft.Extensions.Options.Options.DefaultName, configureOptions);
 
-    public static IServiceCollection ConfigureWithValidation<TOptions>(this IServiceCollection services, string name, Action<TOptions> configureOptions) where TOptions : class
+    public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, string name, Action<TOptions> configureOptions) where TOptions : class
     {
         services.Configure(name, configureOptions);
         services.AddDataAnnotationValidatedOptions<TOptions>(name);

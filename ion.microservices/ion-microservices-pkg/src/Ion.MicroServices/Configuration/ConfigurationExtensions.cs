@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Ion.Exceptions;
+using Microsoft.Extensions.Configuration;
 
 namespace Ion.MicroServices.Configuration;
 
@@ -12,9 +13,9 @@ public static class ConfigurationExtensions
         {
             throw configuration switch
             {
-                IConfigurationRoot configurationIsRoot => new ArgumentException($"Section with key '{key}' does not exist. Existing values are: {configurationIsRoot.GetDebugView()}", nameof(key)),
-                IConfigurationSection configurationIsSection => new ArgumentException($"Section with key '{key}' does not exist at '{configurationIsSection.Path}'. Expected configuration path is '{configurationSection.Path}'", nameof(key)),
-                _ => new ArgumentException($"Failed to find configuration at '{configurationSection.Path}'", nameof(key))
+                IConfigurationRoot configurationIsRoot => new ConfigurationException($"Section with key '{key}' does not exist. Existing values are: {configurationIsRoot.GetDebugView()}", key),
+                IConfigurationSection configurationIsSection => new ConfigurationException($"Section with key '{key}' does not exist at '{configurationIsSection.Path}'. Expected configuration path is '{configurationSection.Path}'", key),
+                _ => new ConfigurationException($"Failed to find configuration at '{configurationSection.Path}'", key)
             };
         }
 

@@ -4,7 +4,7 @@ namespace Ion.MicroServices.Configuration.Validation;
 
 public static class Validator
 {
-    public static System.ComponentModel.DataAnnotations.ValidationResult[] ValidateReturnValue(object objectToValidate)
+    public static ValidationResult[] ValidateReturnValue(object objectToValidate)
     {
         var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
 
@@ -29,12 +29,12 @@ public static class Validator
         return structuredValidationResults;
     }
 
-    private static System.ComponentModel.DataAnnotations.ValidationResult[] StructureValidationResults(IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> validationResults)
+    private static ValidationResult[] StructureValidationResults(IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> validationResults)
     {
-        var structuredValidationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+        var structuredValidationResults = new List<ValidationResult>();
         foreach (var validationResult in validationResults)
         {
-            var structuredValidationResult = new System.ComponentModel.DataAnnotations.ValidationResult
+            var structuredValidationResult = new ValidationResult
             {
                 ErrorMessage = validationResult.ErrorMessage,
                 MemberNames = validationResult.MemberNames.ToArray()
