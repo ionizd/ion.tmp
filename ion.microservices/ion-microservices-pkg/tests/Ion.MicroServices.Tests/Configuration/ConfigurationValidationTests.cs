@@ -11,7 +11,7 @@ namespace Ion.MicroServices.Tests.Configuration;
 public partial class ConfigurationValidationTests
 {
     [SmartTheory(Execute.Always, On.All)]
-    [InlineData("test-options00.json")]
+    [InlineData("test-dataannotations-options00.json")]
     [UnitTest]
     public void GivenSectionDoesNotExist_WhenGettingExistingSection_ThenConfigurationException(string config)
     {

@@ -23,10 +23,10 @@ public partial class ConfigurationValidationTests
         }
 
         [SmartTheory(Execute.Always, On.All)]
-        [InlineData("test-options01.json", true, null, null)]
-        [InlineData("test-options02.json", false, "Setting2", "required")]
-        [InlineData("test-options03.json", false, "Setting3", "URL")]
-        [InlineData("test-options04.json", false, "Setting4", "e-mail")]
+        [InlineData("test-dataannotations-options01.json", true, null, null)]
+        [InlineData("test-dataannotations-options02.json", false, "Setting2", "required")]
+        [InlineData("test-dataannotations-options03.json", false, "Setting3", "URL")]
+        [InlineData("test-dataannotations-options04.json", false, "Setting4", "e-mail")]
         [UnitTest]
         public void
             GivenSectionExists_WhenConfigureAndValidateIsInvoked_ThenOptionsAreValidatedWhenResolvingFromContainer(
@@ -43,6 +43,7 @@ public partial class ConfigurationValidationTests
             var action = () =>
             {
                 var options = provider.GetRequiredService<IOptions<Options>>().Value;
+                options.GetType();
             };
 
             // Assert
