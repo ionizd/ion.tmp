@@ -15,6 +15,17 @@ public static class ServiceCollectionExtensions
         return services.ConfigureAndValidate<TOptions>(section);
     }
 
+    public static IServiceCollection ConfigureAndValidate<TOptions, TOptionsValidator>(this IServiceCollection services, IConfigurationRoot configRoot, Func<string> sectionKeyProvider)
+        where TOptions : class
+        where TOptionsValidator : class, IValidateOptions<TOptions>
+    {
+        var section = configRoot.GetExistingSection(sectionKeyProvider());
+
+        return services
+            .AddSingleton<IValidateOptions<TOptions>, TOptionsValidator>()
+            .Configure<TOptions>(section);
+    }
+
     public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, IConfigurationRoot configRoot, string name, Func<string> sectionKeyProvider)
         where TOptions : class
     {

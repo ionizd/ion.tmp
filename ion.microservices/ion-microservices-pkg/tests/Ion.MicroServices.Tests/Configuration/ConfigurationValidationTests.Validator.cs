@@ -30,7 +30,7 @@ public partial class ConfigurationValidationTests
         public class ChildOptions
         {
             [Required]
-            private string? Name { get; set; }
+            public string? Name { get; set; }
         }
 
         public class OptionsValidator : IValidateOptions<Options>
@@ -85,18 +85,18 @@ public partial class ConfigurationValidationTests
         }
 
         [SmartTheory(Execute.Always, On.All)]
-        [InlineData("test-validator-options01.json", true)]
-        [InlineData("test-validator-options02.json", false)]
-        [InlineData("test-validator-options03.json", false)]
-        [InlineData("test-validator-options04.json", false)]
+        [InlineData("test-validator-options01.json", true, null, null)]
+        [InlineData("test-validator-options02.json", false, "Children", "minimum length")]
+        [InlineData("test-validator-options03.json", false, "Children", "minimum length")]
+        [InlineData("test-validator-options04.json", false, "Name", "required")]
         [UnitTest]
-        public void X(string config, bool shouldBeValid)
+        public void X(string config, bool shouldBeValid, string? key, string? error)
         {
             // Arrange
             var cfg = GetConfigurationRoot(config);
 
             var provider = new ServiceCollection()
-                .ConfigureAndValidate<Options>(cfg, () => Options.SectionKey)
+                .ConfigureAndValidate<Options, OptionsValidator>(cfg, () => Options.SectionKey)
                 .BuildServiceProvider();
 
             // Act
@@ -106,13 +106,14 @@ public partial class ConfigurationValidationTests
                 options.GetType();
             };
 
+            // Assert
             if (shouldBeValid)
             {
                 action.Should().NotThrow();
             }
             else
             {
-                action.Should().Throw<OptionsValidationException>();
+                action.Should().Throw<OptionsValidationException>().And.Message.Should().ContainAll(new[] { key, error });
             }
         }
     }
