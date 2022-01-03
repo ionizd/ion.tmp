@@ -10,7 +10,7 @@ var service = new MicroService("ion-microservices-grpc-code1st-demo", new NullLo
     {
         services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
     })
-    .ConfigureGrpcCodeFirstPipeline(endpoints =>
+    .ConfigureCodeFirstGrpcPipeline(endpoints =>
     {
         endpoints.MapGrpcService<WeatherForecastingService>();
     });

@@ -1,4 +1,3 @@
-using Ion;
 using Ion.Microservices.Demo.Services;
 using Ion.MicroServices;
 using Ion.MicroServices.Demo.WeatherForecasting;
