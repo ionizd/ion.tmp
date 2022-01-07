@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
-namespace Ion.MicroServices.Configuration;
+namespace Ion.Configuration;
 
 public static class ServiceCollectionExtensions
 {
@@ -33,6 +33,7 @@ public static class ServiceCollectionExtensions
 
         return services.ConfigureAndValidate<TOptions>(name, section);
     }
+
     public static IServiceCollection ConfigureAndValidate<TOptions>(this IServiceCollection services, IConfiguration config) where TOptions : class
         => services.ConfigureAndValidate<TOptions>(global::Microsoft.Extensions.Options.Options.DefaultName, config);
 

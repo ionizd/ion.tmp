@@ -10,6 +10,7 @@ public class ShutdownService : IHostedService
     private readonly IHostApplicationLifetime lifetime;
     private readonly ILogger<ShutdownService> logger;
     private readonly IActiveRequestsService service;
+
     public ShutdownService(IActiveRequestsService service, IHostApplicationLifetime lifetime, ILogger<ShutdownService> logger)
     {
         this.service = service ?? throw new ArgumentNullException(nameof(service));

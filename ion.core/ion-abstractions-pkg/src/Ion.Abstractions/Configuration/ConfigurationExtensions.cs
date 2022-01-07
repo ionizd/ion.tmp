@@ -1,7 +1,7 @@
 ﻿using Ion.Exceptions;
 using Microsoft.Extensions.Configuration;
 
-namespace Ion.MicroServices.Configuration;
+namespace Ion.Configuration;
 
 public static class ConfigurationExtensions
 {

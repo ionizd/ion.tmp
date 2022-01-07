@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
-using Ion.MicroServices.Configuration;
+using Ion.Configuration;
 using Ion.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System.ComponentModel.DataAnnotations;
 using Xunit;
 
-namespace Ion.MicroServices.Tests.Configuration;
+namespace Ion.Tests.Configuration;
 
 public partial class ConfigurationValidationTests
 {
@@ -53,7 +53,7 @@ public partial class ConfigurationValidationTests
             }
             else
             {
-                action.Should().Throw<OptionsValidationException>().And.Message.Should().ContainAll(new [] { key, error });
+                action.Should().Throw<OptionsValidationException>().And.Message.Should().ContainAll(new[] { key, error });
             }
         }
     }

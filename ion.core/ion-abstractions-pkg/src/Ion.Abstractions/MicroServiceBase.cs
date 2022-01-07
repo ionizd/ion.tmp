@@ -1,19 +1,14 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Runtime.InteropServices;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace Ion;
 
 public abstract class MicroServiceBase
 {
     private readonly ConcurrentDictionary<string, bool> microserviceFlags = new ConcurrentDictionary<string, bool>();
-
     protected MicroServiceBase()
     {
         EnvironmentVariables = new ReadOnlyDictionary<string, string>(
@@ -38,16 +33,17 @@ public abstract class MicroServiceBase
         IsReady = false;
     }
 
+    public List<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
     public string Environment { get; } = global::System.Environment.GetEnvironmentVariable(Constants.EnvironmentVariables.DotNet.Environment)?.ToLower() ?? "dev";
-
     public IReadOnlyDictionary<string, string> EnvironmentVariables { get; private set; }
-
+    
+    /// <summary>
+    /// Flag indicating whether the IMicroservice's logger is provided externally
+    /// </summary>
+    public bool ExternalLogger { get; protected set; } = false;
     public MicroServiceHostingMode HostingMode { get; init; }
 
     public string HostName { get; } = global::System.Environment.GetEnvironmentVariable(Constants.EnvironmentVariables.Hostname) ?? "localhost";
-
-    public List<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
-
     public string Id { get; } = System.Guid.NewGuid().ToString();
 
     /// <summary>
@@ -74,6 +70,7 @@ public abstract class MicroServiceBase
             //if (value == true) ((MicroServiceLifetime)this.Lifetime).ServiceStartedTokenSource.Cancel();
         }
     }
+
     public OSPlatform Platform
     {
         get
@@ -89,4 +86,3 @@ public abstract class MicroServiceBase
         }
     }
 }
-

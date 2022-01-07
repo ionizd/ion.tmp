@@ -35,6 +35,6 @@ internal class Build : SmartBuild
                 new Artifact() { Name = "ion-microservices-graphql-pkg", Project = "Ion.MicroServices.GraphQL", Type = ArtifactType.Package,  Stability = Stability.Stable },
                 new Artifact() { Name = "ion-microservices-job-pkg", Project = "Ion.MicroServices.Job", Type = ArtifactType.Package,  Stability = Stability.Stable }
             }
-        },        
+        },
     };
 }

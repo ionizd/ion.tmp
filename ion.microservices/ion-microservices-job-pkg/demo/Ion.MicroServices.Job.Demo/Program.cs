@@ -2,7 +2,6 @@ using Ion.MicroServices;
 using Ion.MicroServices.Job;
 using Ion.MicroServices.Job.Demo.Services;
 
-
 var service = new MicroService("ion-microservices-job-demo")
     .ConfigureServices(services =>
     {

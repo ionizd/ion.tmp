@@ -11,13 +11,12 @@ namespace Ion.MicroServices.Api
         {
             var service = (MicroService)microservice;
 
-            microservice.ConfigureApiPipelineInternal(action);            
+            microservice.ConfigureApiPipelineInternal(action);
 
             service.PipelineMode = MicroServicePipelineMode.Api;
 
             return microservice;
         }
-
 
         public static IMicroService ConfigureApiControllerPipeline(this IMicroService microservice)
         {
@@ -27,7 +26,7 @@ namespace Ion.MicroServices.Api
             {
                 endpoints.MapControllers();
             });
-            
+
             service.PipelineMode = MicroServicePipelineMode.ApiControllers;
 
             return microservice;
@@ -63,7 +62,7 @@ namespace Ion.MicroServices.Api
                     app.UseRouting();
                     app.UseAuthorization();
                     app.UseEndpoints(endpointBuilder);
-                });            
+                });
 
             return microservice;
         }

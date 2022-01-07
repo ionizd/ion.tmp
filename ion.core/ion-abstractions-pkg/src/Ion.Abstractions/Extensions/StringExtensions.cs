@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-
 namespace Ion.Extensions;
 
 public static class StringExtensions
@@ -38,8 +35,8 @@ public static class StringExtensions
 
     private static class Environments
     {
-        public static string[] Development = new string[] 
-        { 
+        public static string[] Development = new string[]
+        {
             "dev",
             "development"
         };

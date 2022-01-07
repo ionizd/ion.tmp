@@ -14,7 +14,9 @@ public partial class MicroService : MicroServiceBase, IMicroService
 {
     public bool ExternalLogger = false;
 
-    public MicroService(string name) : this(name, null) { }
+    public MicroService(string name) : this(name, null)
+    {
+    }
 
     public MicroService(string name, ILogger<IMicroService> logger) : base()
     {
@@ -37,9 +39,13 @@ public partial class MicroService : MicroServiceBase, IMicroService
 
     public CancellationTokenSource CancellationTokenSource { get; } = new CancellationTokenSource();
     public IHost Host { get; private set; }
+
     public IMicroServiceLifetime Lifetime { get; } = new MicroServiceLifetime();
     public string Name { get; }
     public MicroServicePipelineMode PipelineMode { get; set; } = MicroServicePipelineMode.NotSet;
+    public IServiceProvider ServiceProvider => Host.Services;
+
+    public IConfigurationRoot ConfigurationRoot => Host.Services.GetService<IConfigurationRoot>();
 
     internal List<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
 
@@ -48,11 +54,10 @@ public partial class MicroService : MicroServiceBase, IMicroService
     internal Func<Assembly> MicroServiceEntrypointAssemblyProvider { get; set; } = () => Assembly.GetEntryAssembly();
 
     private ILogger<IMicroService> Logger { get; set; }
-
     public Task InitializeAsync(IConfigurationRoot configuration = null, params string[] args)
     {
         Host = CreateHostBuilder(configuration, args);
-
+        
         return Task.CompletedTask;
     }
 
@@ -63,6 +68,7 @@ public partial class MicroService : MicroServiceBase, IMicroService
 
         return this;
     }
+
     public async Task RunAsync(IConfigurationRoot configuration = null, params string[] args)
     {
         await InitializeAsync(configuration, args).ConfigureAwait(false);
@@ -82,12 +88,13 @@ public partial class MicroService : MicroServiceBase, IMicroService
             throw;
         }
     }
+
     private IHost CreateHostBuilder(IConfigurationRoot configuration = null, params string[] args)
     {
         var host = global::Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseConsoleLifetime()
-            .ConfigureAppConfiguration((cfg) =>
+            .ConfigureAppConfiguration((ctx, cfg) =>
             {
                 if (configuration != null)
                 {
@@ -113,7 +120,14 @@ public partial class MicroService : MicroServiceBase, IMicroService
                 // (!) Important, .UseSettings MUST be called AFTER Configure
                 // See: https://github.com/dotnet/aspnetcore/issues/38672
                 app
-                    .ConfigureServices(services => ConfigureActions.ForEach(action => action(services)))
+                    .ConfigureServices((ctx, services) =>
+                    {
+                        services.AddSingleton<IConfigurationRoot>(ctx.Configuration as IConfigurationRoot ?? throw new InvalidOperationException("The IHost.Configuration is not a valid IConfigurationRoot"));
+                        services.AddSingleton<IConfiguration>(ctx.Configuration);
+
+                        ConfigureActions.ForEach(action => action(services));
+                        Extensions.ForEach(extension => extension.ConfigureActions.ForEach(action => action(services)));
+                    })
                     .Configure(app =>
                     {
                         /* TODO:

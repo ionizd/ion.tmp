@@ -3,18 +3,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
-
 namespace Ion.MicroServices.Job
 {
     public static class IMicroServiceExtensions
     {
-        
         public static IMicroService ConfigureJob(this IMicroService microservice)
         {
             if (microservice == null) throw new ArgumentNullException(nameof(microservice));
-           
-            var service = (MicroService)microservice;
 
+            var service = (MicroService)microservice;
 
             service.ValidatePipelineModeNotSet();
 

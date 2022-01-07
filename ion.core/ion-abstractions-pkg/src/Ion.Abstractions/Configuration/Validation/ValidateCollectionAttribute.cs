@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ion.MicroServices.Configuration.Validation;
+namespace Ion.Configuration.Validation;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
 public sealed class ValidateCollectionAttribute : ValidationAttribute

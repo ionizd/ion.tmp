@@ -8,11 +8,10 @@ public partial class MicroService
     public static class Middleware
     {
         public static Action<IApplicationBuilder> MicroServiceLifecycleMiddlewares = (app) =>
-        {
-            app.UseMiddleware<StartupMiddleware>();
-            app.UseMiddleware<ReadinessMiddleware>();
-            app.UseMiddleware<ActiveRequestsMiddleware>();
-        };
+          {
+              app.UseMiddleware<StartupMiddleware>();
+              app.UseMiddleware<ReadinessMiddleware>();
+              app.UseMiddleware<ActiveRequestsMiddleware>();
+          };
     }
 }
-

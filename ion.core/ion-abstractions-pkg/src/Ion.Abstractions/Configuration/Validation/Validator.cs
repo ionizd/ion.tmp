@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ion.MicroServices.Configuration.Validation;
+namespace Ion.Configuration.Validation;
 
 public static class Validator
 {

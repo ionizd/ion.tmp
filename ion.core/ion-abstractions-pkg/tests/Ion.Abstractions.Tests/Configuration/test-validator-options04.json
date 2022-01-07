@@ -2,6 +2,9 @@
   "TestOptions": {
     "Name": "Test",
     "Children": [
-    ] 
-  } 
+      {
+        "Name": ""
+      }
+    ]
+  }
 }

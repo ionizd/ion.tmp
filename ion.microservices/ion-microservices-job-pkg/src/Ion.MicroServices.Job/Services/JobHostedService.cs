@@ -1,5 +1,4 @@
-﻿using Ion.MicroServices.Lifecycle;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -10,12 +9,14 @@ internal class JobHostedService : IHostedService
     private readonly IMicroService microservice;
     private readonly IHostApplicationLifetime lifetime;
     private readonly ILogger<JobHostedService> logger;
+
     public JobHostedService(IMicroService microservice, IHostApplicationLifetime lifetime, ILogger<JobHostedService> logger)
     {
         this.microservice = microservice ?? throw new ArgumentNullException(nameof(microservice));
         this.lifetime = lifetime ?? throw new ArgumentNullException(nameof(lifetime));
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
+
     public Task StartAsync(CancellationToken cancellationToken)
     {
         lifetime.ApplicationStarted.Register(async () =>
@@ -38,7 +39,6 @@ internal class JobHostedService : IHostedService
             catch (Exception ex)
             {
                 logger.LogError(ex, "Failed to execute IHostedJobService");
-                
             }
 
             await Task.Delay(1000);

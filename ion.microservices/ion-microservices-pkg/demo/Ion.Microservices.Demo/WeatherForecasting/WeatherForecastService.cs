@@ -10,7 +10,7 @@ public class WeatherForecastService : IWeatherForecastService
     public IEnumerable<WeatherForecast> GetWeatherForecast()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast(
-        
+
             DateTime.Now.AddDays(index),
             Random.Shared.Next(-20, 55),
             Summaries[Random.Shared.Next(Summaries.Length)]

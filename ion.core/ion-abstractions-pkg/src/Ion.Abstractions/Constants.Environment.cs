@@ -16,6 +16,6 @@ public static partial class Constants
         public static class Kubernetes
         {
             public const string KubernetesVariablePrefix = "KUBERNETES";
-        }                        
+        }
     }
 }

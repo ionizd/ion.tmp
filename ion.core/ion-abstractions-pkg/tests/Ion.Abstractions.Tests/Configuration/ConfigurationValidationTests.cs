@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
+using Ion.Configuration;
 using Ion.Exceptions;
-using Ion.MicroServices.Configuration;
 using Ion.Testing;
 using Microsoft.Extensions.Configuration;
 using System;
 using Xunit;
 
-namespace Ion.MicroServices.Tests.Configuration;
+namespace Ion.Tests.Configuration;
 
 public partial class ConfigurationValidationTests
 {
@@ -30,7 +30,7 @@ public partial class ConfigurationValidationTests
     {
         var stream =
             typeof(ConfigurationValidationTests).Assembly.GetManifestResourceStream(
-                $"Ion.MicroServices.Tests.Configuration.{config}");
+                $"Ion.Tests.Configuration.{config}");
         return new ConfigurationBuilder().AddJsonStream(stream).Build();
     }
 }

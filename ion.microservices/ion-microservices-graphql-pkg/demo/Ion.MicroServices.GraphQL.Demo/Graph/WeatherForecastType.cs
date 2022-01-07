@@ -3,7 +3,6 @@ using Ion.MicroServices.Demo.WeatherForecasting;
 
 namespace Ion.MicroServices.GraphQL.Demo.Graph;
 
-
 public class WeatherForecastType : ObjectType<WeatherForecast>
 {
     protected override void Configure(IObjectTypeDescriptor<WeatherForecast> descriptor)

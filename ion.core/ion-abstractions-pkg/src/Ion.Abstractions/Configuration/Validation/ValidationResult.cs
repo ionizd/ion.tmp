@@ -1,4 +1,4 @@
-﻿namespace Ion.MicroServices.Configuration.Validation;
+﻿namespace Ion.Configuration.Validation;
 
 public class ValidationResult
 {

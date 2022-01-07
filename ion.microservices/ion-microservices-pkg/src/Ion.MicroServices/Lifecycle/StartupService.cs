@@ -9,6 +9,7 @@ public class StartupService : IHostedService
     private readonly IHostApplicationLifetime lifetime;
     private readonly ILogger<StartupService> logger;
     private readonly IMicroService service;
+
     public StartupService(IMicroService service, IHostApplicationLifetime lifetime, ILogger<StartupService> logger)
     {
         this.service = service ?? throw new ArgumentNullException(nameof(service));

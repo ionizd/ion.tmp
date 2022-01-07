@@ -38,10 +38,10 @@ public static class IMicroServiceExtensions
         {
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => 
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGraphQL("/graphql");
-            });                        
+            });
         });
 
         service.PipelineMode = MicroServicePipelineMode.Api;

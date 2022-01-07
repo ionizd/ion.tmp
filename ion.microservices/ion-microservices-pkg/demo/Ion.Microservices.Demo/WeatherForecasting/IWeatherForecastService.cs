@@ -4,4 +4,3 @@ public interface IWeatherForecastService
 {
     IEnumerable<WeatherForecast> GetWeatherForecast();
 }
-

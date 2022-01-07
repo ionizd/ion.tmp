@@ -8,11 +8,10 @@ public partial class MicroService
     public static class ServiceCollection
     {
         public static Action<IServiceCollection> LifecycleServices = (svc) =>
-        {
-            svc.AddSingleton<IActiveRequestsService, ActiveRequestsService>();
-            svc.AddHostedService<StartupService>();
-            svc.AddHostedService<ShutdownService>();
-        };
+          {
+              svc.AddSingleton<IActiveRequestsService, ActiveRequestsService>();
+              svc.AddHostedService<StartupService>();
+              svc.AddHostedService<ShutdownService>();
+          };
     }
 }
-
