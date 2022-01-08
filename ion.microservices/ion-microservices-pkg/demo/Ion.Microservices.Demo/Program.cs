@@ -8,7 +8,7 @@ var service = new MicroService("ion-microservices-demo")
     {
         log.ToConsole();
     })
-    .ConfigureServices(services =>
+    .ConfigureServices((services, configuration) =>
     {
         services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
         services.AddHostedService<WeatherForecastingService>();

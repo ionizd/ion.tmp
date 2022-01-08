@@ -65,7 +65,7 @@ public partial class MicroServiceTests
 
             var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
                 .InTestClass<MicroServiceTests>()
-                .ConfigureServices(services =>
+                .ConfigureServices((services, configuration) =>
                 {
                     services.AddHostedStartupService<TestData.Sec2DelayStartupService>();
                 })
@@ -90,7 +90,7 @@ public partial class MicroServiceTests
 
             var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
                 .InTestClass<MicroServiceTests>()
-                .ConfigureServices(services =>
+                .ConfigureServices((services, configuration) =>
                 {
                     services.AddHostedStartupService<TestData.FailingSec2DelayStartupService>();
                 })

@@ -29,7 +29,7 @@ namespace Ion.MicroServices.Grpc
 
             service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
 
-            service.ConfigureActions.Add(services =>
+            service.ConfigureActions.Add((services, configuration) =>
             {
                 configureGrpc(services);
             });

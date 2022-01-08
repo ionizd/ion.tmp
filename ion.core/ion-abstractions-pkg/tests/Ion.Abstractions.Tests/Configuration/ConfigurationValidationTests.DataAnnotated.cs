@@ -29,14 +29,14 @@ public partial class ConfigurationValidationTests
         [InlineData("test-dataannotations-options04.json", false, "Setting4", "e-mail")]
         [UnitTest]
         public void
-            GivenSectionExists_WhenConfigureAndValidateIsInvoked_ThenOptionsAreValidatedWhenResolvingFromContainer(
+            GivenSectionExists_WhenConfigureValidatedOptionsIsInvoked_ThenOptionsAreValidatedWhenResolvingFromContainer(
                 string config, bool shouldBeValid, string? key, string? error)
         {
             // Arrange
             var cfg = GetConfigurationRoot(config);
 
             var provider = new ServiceCollection()
-                .ConfigureAndValidate<Options>(cfg, () => Options.SectionKey)
+                .ConfigureValidatedOptions<Options>(cfg, () => Options.SectionKey)
                 .BuildServiceProvider();
 
             // Act

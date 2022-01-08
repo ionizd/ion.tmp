@@ -10,7 +10,7 @@ public partial class MicroService
     {
         this.Extensions.ForEach(extension =>
         {
-            ConfigureActions.Add((services) => extension.ConfigureServices(services, this));
+            ConfigureActions.Add((services, configuration) => extension.ConfigureServices(services, this));
             ConfigurePipelineActions.Add((app) => extension.Configure(app, this));
         });
 

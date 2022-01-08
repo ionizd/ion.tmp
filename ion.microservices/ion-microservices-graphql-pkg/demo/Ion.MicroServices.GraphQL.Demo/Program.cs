@@ -6,7 +6,7 @@ using Ion.MicroServices.GraphQL.Demo.Graph;
 using Microsoft.Extensions.Logging.Abstractions;
 
 var service = new MicroService("ion-microservices-graphql-demo", new NullLogger<IMicroService>())
-    .ConfigureServices(services =>
+    .ConfigureServices((services, configuration) =>
     {
         services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
     })

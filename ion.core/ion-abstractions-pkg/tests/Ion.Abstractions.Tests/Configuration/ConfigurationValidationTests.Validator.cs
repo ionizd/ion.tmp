@@ -22,13 +22,13 @@ public partial class ConfigurationValidationTests
         [InlineData("test-validator-options03.json", false, "Children", "minimum length")]
         [InlineData("test-validator-options04.json", false, "Name", "required")]
         [UnitTest]
-        public void X(string config, bool shouldBeValid, string? key, string? error)
+        public void GivenSectionExists_WhenConfigureValidatedOptionsIsInvokedWithCustomValidator_ThenOptionsAreValidatedWhenResolvingFromContaine(string config, bool shouldBeValid, string? key, string? error)
         {
             // Arrange
             var cfg = GetConfigurationRoot(config);
 
             var provider = new ServiceCollection()
-                .ConfigureAndValidate<Options, OptionsValidator>(cfg, () => Options.SectionKey)
+                .ConfigureValidatedOptions<Options, OptionsValidator>(cfg, () => Options.SectionKey)
                 .BuildServiceProvider();
 
             // Act

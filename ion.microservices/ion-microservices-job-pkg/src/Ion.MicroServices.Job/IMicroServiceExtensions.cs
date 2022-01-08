@@ -16,7 +16,7 @@ namespace Ion.MicroServices.Job
             service.ValidatePipelineModeNotSet();
 
             service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
-            service.ConfigureActions.Add(svc =>
+            service.ConfigureActions.Add((svc, configuration) =>
             {
                 svc.AddHostedService<JobHostedService>();
             });

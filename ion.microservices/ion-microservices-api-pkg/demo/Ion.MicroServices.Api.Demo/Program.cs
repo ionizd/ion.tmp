@@ -7,7 +7,7 @@ var summaries = new[]
 };
 
 var service = new MicroService("ion-microservices-api-demo")
-    .ConfigureServices(services => { })
+    .ConfigureServices((services, _) => { })
     .ConfigureApiPipeline(app =>
     {
         app.MapGet("/weatherforecast", () =>

@@ -8,13 +8,12 @@ namespace Ion;
 
 public abstract class MicroServiceExtension
 {
-    protected MicroServiceExtension(IMicroService service, IConfigurationRoot configuration)
+    protected MicroServiceExtension(IMicroService service)
     {
         Service = service ?? throw new ArgumentNullException(nameof(service));
-        Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
     }
 
-    public IList<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
+    public IList<Action<IServiceCollection, IConfiguration>> ConfigureActions { get; } = new List<Action<IServiceCollection, IConfiguration>>();
     protected IConfigurationRoot Configuration
     {
         get;

@@ -18,7 +18,10 @@ namespace Ion.Logging.Tests
                 GivenWithLoggingToConsole_WhenValidConfiguration_ThenServiceStarts()
             {
                 // Arrange
-                var config = new ConfigurationBuilder().Build();
+                var config = new ConfigurationBuilder()
+                    .UseDefaultLoggingConfiguration()
+                    .Build();
+                    
 
                 var service = new MicroService(ServiceName)
                     .InTestClass<MicroServiceTests>()

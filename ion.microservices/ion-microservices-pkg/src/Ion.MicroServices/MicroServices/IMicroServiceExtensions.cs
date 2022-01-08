@@ -1,6 +1,7 @@
 ﻿using Ion.Extensions;
 using Ion.Middleware;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
@@ -9,7 +10,7 @@ namespace Ion.MicroServices;
 
 public static class IMicroServiceExtensions
 {
-    public static IMicroService ConfigureServices(this IMicroService microservice, Action<IServiceCollection> action)
+    public static IMicroService ConfigureServices(this IMicroService microservice, Action<IServiceCollection, IConfiguration> action)
     {
         if (microservice == null) throw new ArgumentNullException(nameof(microservice));
         if (action == null) throw new ArgumentNullException(nameof(action));
@@ -20,7 +21,7 @@ public static class IMicroServiceExtensions
 
         if (service.Environment.IsDevelopment())
         {
-            service.ConfigureActions.Add(svc =>
+            service.ConfigureActions.Add((svc, cfg) =>
             {
                 svc.AddMiddlewareAnalysis();
             });

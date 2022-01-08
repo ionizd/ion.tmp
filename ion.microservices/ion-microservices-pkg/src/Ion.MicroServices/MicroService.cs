@@ -28,7 +28,7 @@ public partial class MicroService : MicroServiceBase, IMicroService
             Logger = logger;
         }
 
-        ConfigureActions.Add((svc) =>
+        ConfigureActions.Add((svc, configuration) =>
         {
             svc.AddSingleton<IMicroService>(this);
             svc.AddAuthorization();
@@ -45,9 +45,9 @@ public partial class MicroService : MicroServiceBase, IMicroService
     public MicroServicePipelineMode PipelineMode { get; set; } = MicroServicePipelineMode.NotSet;
     public IServiceProvider ServiceProvider => Host.Services;
 
-    public IConfigurationRoot ConfigurationRoot => Host.Services.GetService<IConfigurationRoot>();
+    public IConfigurationRoot ConfigurationRoot { get; private set; }
 
-    internal List<Action<IServiceCollection>> ConfigureActions { get; } = new List<Action<IServiceCollection>>();
+    internal List<Action<IServiceCollection, IConfiguration>> ConfigureActions { get; } = new List<Action<IServiceCollection, IConfiguration>>();
 
     internal List<Action<IApplicationBuilder>> ConfigurePipelineActions { get; } = new List<Action<IApplicationBuilder>>();
 
@@ -110,6 +110,8 @@ public partial class MicroService : MicroServiceBase, IMicroService
                         .AddEnvironmentVariables()
                         .AddCommandLine(args);
                 }
+
+                ConfigurationRoot = cfg.Build();
             })
             .ConfigureLogging((logging) =>
             {
@@ -122,11 +124,12 @@ public partial class MicroService : MicroServiceBase, IMicroService
                 app
                     .ConfigureServices((ctx, services) =>
                     {
-                        services.AddSingleton<IConfigurationRoot>(ctx.Configuration as IConfigurationRoot ?? throw new InvalidOperationException("The IHost.Configuration is not a valid IConfigurationRoot"));
-                        services.AddSingleton<IConfiguration>(ctx.Configuration);
+                        services.AddSingleton<IConfigurationRoot>(ConfigurationRoot);
+                        services.AddSingleton<IConfiguration>(ConfigurationRoot);
 
-                        ConfigureActions.ForEach(action => action(services));
-                        Extensions.ForEach(extension => extension.ConfigureActions.ForEach(action => action(services)));
+                        ConfigureActions.ForEach(action => action(services, ConfigurationRoot));
+
+                        Extensions.ForEach(extension => extension.ConfigureActions.ForEach(action => action(services, ConfigurationRoot)));
                     })
                     .Configure(app =>
                     {

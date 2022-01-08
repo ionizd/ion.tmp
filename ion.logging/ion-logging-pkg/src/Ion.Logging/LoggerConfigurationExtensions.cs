@@ -1,11 +1,9 @@
-﻿using System.Diagnostics;
-using Ion.Extensions;
+﻿using Ion.Extensions;
 using Ion.Logging.Enrichers;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
+using System.Diagnostics;
 
 namespace Ion.Logging;
 
@@ -13,12 +11,10 @@ internal static class LoggerConfigurationExtensions
 {
     internal static LoggerConfiguration ConfigureSerilog(
         this LoggerConfiguration loggerConfiguration,
-        IMicroService microservice, LoggingConfigurationBuilder builder,
+        IMicroService microservice, Options options,LoggingConfigurationBuilder builder,
         params IDestructuringPolicy[] destructuringPolicies)
     {
-        var options = microservice.ServiceProvider.GetRequiredService<IOptions<Options>>();
-        
-        if (options.Value.EnableSelfLog)
+        if (options.EnableSelfLog)
         {
             Serilog.Debugging.SelfLog.Enable((msg) =>
             {
@@ -42,7 +38,7 @@ internal static class LoggerConfigurationExtensions
     /// <param name="loggerConfiguration"></param>
     /// <param name="settings">Fasit:Core:Logging config section</param>
     /// <returns></returns>
-    internal static LoggerConfiguration ConfigureEnrichers(this LoggerConfiguration loggerConfiguration, IMicroService microservice, IOptions<Options> options)
+    internal static LoggerConfiguration ConfigureEnrichers(this LoggerConfiguration loggerConfiguration, IMicroService microservice, Options options)
     {
         return loggerConfiguration
             .Enrich.WithProperty("Application", microservice.Name)
@@ -64,10 +60,10 @@ internal static class LoggerConfigurationExtensions
     /// <param name="settings">Fasit:Core:Logging config section</param>
     /// <returns></returns>
     internal static LoggerConfiguration ConfigureLogLevel(this LoggerConfiguration loggerConfiguration,
-        IOptions<Options> options)
+        Options options)
     {
         return loggerConfiguration
-            .MinimumLevel.Is(options.Value.Level.ToSerilogLogLevel())
+            .MinimumLevel.Is(options.Level.ToSerilogLogLevel())
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
             .MinimumLevel.Override("System", LogEventLevel.Warning);
     }

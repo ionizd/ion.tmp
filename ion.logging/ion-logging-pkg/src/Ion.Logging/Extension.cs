@@ -15,20 +15,20 @@ internal sealed class Extension : MicroServiceExtension
 {
     private readonly Action<LoggingConfigurationBuilder> action;
 
-    internal Extension(IMicroService service, IConfigurationRoot configuration, Action<LoggingConfigurationBuilder> action)
-        : base(service, configuration)
+    internal Extension(IMicroService service, Action<LoggingConfigurationBuilder> action)
+        : base(service)
     {
         this.action = action ?? throw new ArgumentNullException(nameof(action));
 
-        this.ConfigureActions.Add((svc) =>
+        this.ConfigureActions.Add((svc, configuration) =>
         {
-            svc.ConfigureAndValidate<Options>(Configuration, () => Options.SectionKey);
+            var options = svc.ConfigureOptions<Options>(configuration, () => Options.SectionKey);
 
             var builder = new LoggingConfigurationBuilder(this);
             action(builder);
 
             ILogger logger = new LoggerConfiguration()
-                .ConfigureSerilog(service, builder)
+                .ConfigureSerilog(service, options, builder)
                 .CreateLogger();
 
             ILoggerFactory loggerFactory = null;
