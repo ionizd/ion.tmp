@@ -1,10 +1,11 @@
-﻿using Serilog;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace Ion.Logging;
 
 public sealed class LoggingConfigurationBuilder
 {
-    internal readonly IList<Action<LoggerConfiguration, IMicroService>> Sinks = new List<Action<LoggerConfiguration, IMicroService>>();
+    internal readonly IList<Action<LoggerConfiguration, IServiceCollection, IMicroService>> Sinks = new List<Action<LoggerConfiguration, IServiceCollection, IMicroService>>();
     internal Extension Extension { get; }
 
     internal LoggingConfigurationBuilder(Extension extension)
@@ -14,7 +15,7 @@ public sealed class LoggingConfigurationBuilder
 
     public LoggingConfigurationBuilder ToConsole()
     {
-        Sinks.Add((logger, service) => logger.WriteTo.Async(@async => @async.Console()));
+        Sinks.Add((logger, _, _) => logger.WriteTo.Async(@async => @async.Console()));
 
         return this;
     }

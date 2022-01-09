@@ -4,6 +4,7 @@ using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 using System.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Ion.Logging;
 
@@ -11,7 +12,10 @@ internal static class LoggerConfigurationExtensions
 {
     internal static LoggerConfiguration ConfigureSerilog(
         this LoggerConfiguration loggerConfiguration,
-        IMicroService microservice, Options options,LoggingConfigurationBuilder builder,
+        IMicroService microservice, 
+        IServiceCollection services,
+        Options options,LoggingConfigurationBuilder builder,
+
         params IDestructuringPolicy[] destructuringPolicies)
     {
         if (options.EnableSelfLog)
@@ -26,7 +30,7 @@ internal static class LoggerConfigurationExtensions
 
         return loggerConfiguration
             .ConfigureLogLevel(options)
-            .ConfigureSinks(builder, microservice)
+            .ConfigureSinks(builder, services, microservice)
             .ConfigureEnrichers(microservice, options)
             .Destructure.With(destructuringPolicies);
     }
@@ -76,9 +80,9 @@ internal static class LoggerConfigurationExtensions
     /// <param name="settings">Fasit:Core:Logging config section</param>
     /// <returns></returns>
     internal static LoggerConfiguration ConfigureSinks(this LoggerConfiguration loggerConfiguration,
-        LoggingConfigurationBuilder builder, IMicroService service)
+        LoggingConfigurationBuilder builder, IServiceCollection services, IMicroService microservice)
     {
-        builder.Sinks.ForEach(sink => sink(loggerConfiguration, service));
+        builder.Sinks.ForEach(sink => sink(loggerConfiguration, services, microservice));
 
         // if (settings.Console != null && settings.Console.Enabled)
         // {

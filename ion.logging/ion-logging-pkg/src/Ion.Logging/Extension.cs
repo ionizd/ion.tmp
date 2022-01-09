@@ -28,7 +28,7 @@ internal sealed class Extension : MicroServiceExtension
             action(builder);
 
             ILogger logger = new LoggerConfiguration()
-                .ConfigureSerilog(service, options, builder)
+                .ConfigureSerilog(service, svc, options, builder)
                 .CreateLogger();
 
             ILoggerFactory loggerFactory = null;

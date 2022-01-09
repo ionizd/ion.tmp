@@ -104,7 +104,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Abstractions.Tests", "i
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3DC2C7DD-7925-4769-9012-7EC8124313FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.Logging.Tests", "ion.logging\ion-logging-pkg\tests\Ion.Logging.Tests\Ion.Logging.Tests.csproj", "{BE698EF5-B0F1-4A11-B5C2-6BB3F92D1D04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Logging.Tests", "ion.logging\ion-logging-pkg\tests\Ion.Logging.Tests\Ion.Logging.Tests.csproj", "{BE698EF5-B0F1-4A11-B5C2-6BB3F92D1D04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ion-logging-logzio-pkg", "ion-logging-logzio-pkg", "{5F14EFF4-B7D7-4A97-B5FA-A3FFDCD42580}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B0801DF4-4AAD-4974-9FD7-B7CD7C4A3308}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1D8C7B1B-75ED-4557-A2EE-F715C9A9B856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.Logging.LogzIo", "ion.logging\ion-logging-logzio-pkg\src\Ion.Logging.LogzIo\Ion.Logging.LogzIo.csproj", "{0210ED92-1620-4316-94C8-D2C582C868E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.Logging.LogzIo.Tests", "ion.logging\ion-logging-logzio-pkg\tests\Ion.Logging.LogzIo.Tests\Ion.Logging.LogzIo.Tests.csproj", "{82EF126F-1456-4C33-8E65-DF8B663760A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -192,6 +202,14 @@ Global
 		{BE698EF5-B0F1-4A11-B5C2-6BB3F92D1D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE698EF5-B0F1-4A11-B5C2-6BB3F92D1D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE698EF5-B0F1-4A11-B5C2-6BB3F92D1D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0210ED92-1620-4316-94C8-D2C582C868E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0210ED92-1620-4316-94C8-D2C582C868E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0210ED92-1620-4316-94C8-D2C582C868E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0210ED92-1620-4316-94C8-D2C582C868E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82EF126F-1456-4C33-8E65-DF8B663760A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EF126F-1456-4C33-8E65-DF8B663760A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EF126F-1456-4C33-8E65-DF8B663760A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EF126F-1456-4C33-8E65-DF8B663760A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -242,6 +260,11 @@ Global
 		{1273C1B9-D026-45BA-80C2-C4B18E100016} = {71A45C28-93B9-46D6-8804-DFEA528EEDE9}
 		{3DC2C7DD-7925-4769-9012-7EC8124313FA} = {F3698736-37E3-4475-A615-0A480ED64D29}
 		{BE698EF5-B0F1-4A11-B5C2-6BB3F92D1D04} = {3DC2C7DD-7925-4769-9012-7EC8124313FA}
+		{5F14EFF4-B7D7-4A97-B5FA-A3FFDCD42580} = {EA9128EB-F470-4635-ABC2-52454E61FF8D}
+		{B0801DF4-4AAD-4974-9FD7-B7CD7C4A3308} = {5F14EFF4-B7D7-4A97-B5FA-A3FFDCD42580}
+		{1D8C7B1B-75ED-4557-A2EE-F715C9A9B856} = {5F14EFF4-B7D7-4A97-B5FA-A3FFDCD42580}
+		{0210ED92-1620-4316-94C8-D2C582C868E0} = {B0801DF4-4AAD-4974-9FD7-B7CD7C4A3308}
+		{82EF126F-1456-4C33-8E65-DF8B663760A0} = {1D8C7B1B-75ED-4557-A2EE-F715C9A9B856}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A5B145F-29A4-4EE8-BAB3-29FCB87D36A1}
