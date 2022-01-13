@@ -1,3 +1,5 @@
+using Ion.Logging;
+using Ion.Logging.LogzIo;
 using Ion.MicroServices;
 using Ion.MicroServices.Api;
 
@@ -7,6 +9,12 @@ var summaries = new[]
 };
 
 var service = new MicroService("ion-microservices-api-demo")
+    .WithLogging(log =>
+    {
+        log
+            .ToConsole()
+            .ToLogzIo();
+    })
     .ConfigureServices((services, _) => { })
     .ConfigureApiPipeline(app =>
     {

@@ -1,4 +1,5 @@
-﻿using Ion.Exceptions;
+﻿using System.Diagnostics;
+using Ion.Exceptions;
 using Ion.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,6 +57,8 @@ public partial class MicroService : MicroServiceBase, IMicroService
     private ILogger<IMicroService> Logger { get; set; }
     public Task InitializeAsync(IConfigurationRoot configuration = null, params string[] args)
     {
+        System.Diagnostics.Activity.DefaultIdFormat = ActivityIdFormat.W3C;
+
         Host = CreateHostBuilder(configuration, args);
         
         return Task.CompletedTask;

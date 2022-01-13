@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using Ion.MicroServices.Middleware;
 
 namespace Ion.MicroServices;
 
@@ -75,6 +76,16 @@ public static class IMicroServiceExtensions
         }
 
         service.ConfigurePipelineActions.Add(MicroService.Middleware.MicroServiceLifecycleMiddlewares);
+
+        service.ConfigurePipelineActions.Add(app =>
+        {
+            app.UseMiddleware<TracingMiddleware>();
+        });
+
+        if (microservice.Extensions.SingleOrDefault(extension => extension is IHaveRequestLoggingMiddleware) is IHaveRequestLoggingMiddleware requestLoggingExtension)
+        {
+            service.ConfigurePipelineActions.Add(requestLoggingExtension.ConfigureRequestLoggingMiddleware);
+        }
 
         return microservice;
     }

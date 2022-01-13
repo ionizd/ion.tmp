@@ -93,9 +93,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ion.logging", "ion.logging", "{EA9128EB-F470-4635-ABC2-52454E61FF8D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ion-logging-pkg", "ion-logging-pkg", "{F3698736-37E3-4475-A615-0A480ED64D29}"
-	ProjectSection(SolutionItems) = preProject
-		ion.logging\ion-logging-logzio-pkg\tests\Ion.Logging.LogzIo.Tests\MicroServiceTests.LogzIo.cs = ion.logging\ion-logging-logzio-pkg\tests\Ion.Logging.LogzIo.Tests\MicroServiceTests.LogzIo.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{18AE0719-8CBE-413A-B229-48BB330910F6}"
 EndProject

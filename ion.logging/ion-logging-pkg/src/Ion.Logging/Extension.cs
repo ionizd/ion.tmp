@@ -50,20 +50,5 @@ internal sealed class Extension : MicroServiceExtension
         });
     }
 
-    public override IServiceCollection ConfigureServices(IServiceCollection services, IMicroService microservice)
-    {
-        
-
-
-        
-       
-        //// Override the existing microservice.Logger with Serilog
-        //((MicroService)microservice).Logger = microservice.ExternalLogger
-        //    ? microservice.Logger
-        //    : loggerFactory.CreateLogger<IMicroService>();
-
-        return services;
-    }
-
     public Action<IApplicationBuilder> ConfigureRequestLoggingMiddleware { get; set; }
 }
