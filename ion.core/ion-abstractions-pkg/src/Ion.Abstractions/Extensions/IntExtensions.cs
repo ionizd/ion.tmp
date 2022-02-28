@@ -1,5 +1,3 @@
-using System;
-
 namespace Ion.Extensions;
 
 public static class IntExtensions

@@ -28,6 +28,7 @@ public class MiddlewareResponse
 
     [JsonPropertyName("name")]
     public string Name { get; set; }
+
     [JsonPropertyName("pipelineMode")]
     public MicroServicePipelineMode PipelineMode { get; set; }
 }

@@ -6,11 +6,12 @@ using Ion.MicroServices.Grpc;
 using Microsoft.Extensions.Logging.Abstractions;
 
 var service = new MicroService("ion-microservices-grpc-demo", new NullLogger<IMicroService>())
-    .ConfigureServices(services =>
+    .ConfigureServices((services, configuration) =>
     {
         services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
     })
-    .ConfigureGrpcPipeline(endpoints => {
+    .ConfigureGrpcPipeline(endpoints =>
+    {
         endpoints.MapGrpcService<WeatherForecastingService>();
     });
 

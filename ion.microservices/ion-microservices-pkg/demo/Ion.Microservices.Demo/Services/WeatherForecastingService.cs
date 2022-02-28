@@ -13,6 +13,7 @@ public class WeatherForecastingService : BackgroundService
         this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         this.service = service ?? throw new ArgumentNullException(nameof(service));
     }
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
@@ -24,4 +25,3 @@ public class WeatherForecastingService : BackgroundService
         }
     }
 }
-

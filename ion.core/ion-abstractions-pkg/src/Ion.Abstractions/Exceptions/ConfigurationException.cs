@@ -3,6 +3,7 @@ namespace Ion.Exceptions;
 public class ConfigurationException : Exception
 {
     public string Key { get; private set; }
+
     public ConfigurationException(string message)
         : base(message)
     {

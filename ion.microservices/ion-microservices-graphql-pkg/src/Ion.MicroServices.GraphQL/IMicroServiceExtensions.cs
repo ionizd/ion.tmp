@@ -15,7 +15,7 @@ public static class IMicroServiceExtensions
         service.ValidatePipelineModeNotSet();
 
         service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
-        service.ConfigureActions.Add(svc =>
+        service.ConfigureActions.Add((svc, configuration) =>
         {
             var server = svc.AddGraphQLServer();
             schemaBuilder(server);
@@ -38,10 +38,10 @@ public static class IMicroServiceExtensions
         {
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => 
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGraphQL("/graphql");
-            });                        
+            });
         });
 
         service.PipelineMode = MicroServicePipelineMode.Api;

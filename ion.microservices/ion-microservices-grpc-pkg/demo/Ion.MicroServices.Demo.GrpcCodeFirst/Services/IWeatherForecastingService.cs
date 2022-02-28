@@ -9,4 +9,3 @@ public interface IWeatherForecastingService
     [OperationContract]
     Task<WeatherForecastResponse[]> GetWeatherForecast(CallContext context = default);
 }
-

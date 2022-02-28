@@ -2,6 +2,7 @@
 using System;
 
 namespace Ion.Testing;
+
 public static class MicroServiceTestExtensions
 {
     public static void ShouldStart(this IMicroService service, TimeSpan timeout)

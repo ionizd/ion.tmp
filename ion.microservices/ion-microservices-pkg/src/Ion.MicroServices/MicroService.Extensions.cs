@@ -3,17 +3,16 @@
 namespace Ion.MicroServices;
 
 public partial class MicroService
-{
-    internal IList<MicroServiceExtension> Extensions { get; set; } = new List<MicroServiceExtension>();
+{ 
+    public IList<MicroServiceExtension> Extensions { get; init; } = new List<MicroServiceExtension>();
 
     internal MicroService ConfigureExtensions()
     {
         this.Extensions.ForEach(extension =>
         {
-            ConfigureActions.Add((services) => extension.ConfigureServices(services, this));
+            ConfigureActions.Add((services, configuration) => extension.ConfigureServices(services, this));
             ConfigurePipelineActions.Add((app) => extension.Configure(app, this));
         });
-
 
         return this;
     }

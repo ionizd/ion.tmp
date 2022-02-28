@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
 using FluentAssertions;
 using Ion.Extensions;
-using Ion.MicroServices;
 using Ion.MicroServices.Lifecycle;
 using Ion.Testing;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Ion.MicroServices.Tests;
 
-public class MicroServiceTests
+public partial class MicroServiceTests
 {
     public class Startup
     {
@@ -17,10 +17,10 @@ public class MicroServiceTests
 
         [Fact]
         [UnitTest]
-        public async void GivenConfigureDefaultServicePipelineIsUsed_WhenRunAsyncIsInvoked_ThenServiceStartsInNoneMode()
+        public async Task GivenConfigureDefaultServicePipelineIsUsed_WhenRunAsyncIsInvoked_ThenServiceStartsInNoneMode()
         {
             // Arrange
-            var config = new ConfigurationBuilder().Build();            
+            var config = new ConfigurationBuilder().Build();
 
             var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
                 .InTestClass<MicroServiceTests>()
@@ -37,7 +37,7 @@ public class MicroServiceTests
 
         [Fact]
         [UnitTest]
-        public async void GivenRunAsyncIsInvoked_WhenNoIHostedStartupServicesAreUsed_ThenServiceShouldStartImmediately()
+        public async Task GivenRunAsyncIsInvoked_WhenNoIHostedStartupServicesAreUsed_ThenServiceShouldStartImmediately()
         {
             // Arrange
             var config = new ConfigurationBuilder().Build();
@@ -46,11 +46,11 @@ public class MicroServiceTests
                 .InTestClass<MicroServiceTests>()
                 .ConfigureDefaultServicePipeline();
 
-            service.CancellationTokenSource.CancelAfter(1000);            
+            service.CancellationTokenSource.CancelAfter(1000);
 
             // Act & Assert
             var task = service.RunAsync(config);
-            
+
             service.ShouldStart(500.Milliseconds());
 
             await task;
@@ -58,14 +58,14 @@ public class MicroServiceTests
 
         [Fact]
         [UnitTest]
-        public async void GivenRunAsyncIsInvoked_WhenNonFailingIHostedStartupServicesAreUsed_ThenServiceShouldStart()
+        public async Task GivenRunAsyncIsInvoked_WhenNonFailingIHostedStartupServicesAreUsed_ThenServiceShouldStart()
         {
             // Arrange
             var config = new ConfigurationBuilder().Build();
 
             var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
                 .InTestClass<MicroServiceTests>()
-                .ConfigureServices(services =>
+                .ConfigureServices((services, configuration) =>
                 {
                     services.AddHostedStartupService<TestData.Sec2DelayStartupService>();
                 })
@@ -78,19 +78,19 @@ public class MicroServiceTests
 
             service.ShouldStart(5000.Milliseconds());
 
-            await task;            
+            await task;
         }
 
         [Fact]
         [UnitTest]
-        public async void GivenRunAsyncIsInvoked_WhenFailingIHostedStartupServicesAreUsed_ThenServiceShouldFailToStart()
+        public async Task GivenRunAsyncIsInvoked_WhenFailingIHostedStartupServicesAreUsed_ThenServiceShouldFailToStart()
         {
             // Arrange
             var config = new ConfigurationBuilder().Build();
 
             var service = new MicroService(ServiceName, new NullLogger<IMicroService>())
                 .InTestClass<MicroServiceTests>()
-                .ConfigureServices(services =>
+                .ConfigureServices((services, configuration) =>
                 {
                     services.AddHostedStartupService<TestData.FailingSec2DelayStartupService>();
                 })
@@ -105,4 +105,3 @@ public class MicroServiceTests
         }
     }
 }
-

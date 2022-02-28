@@ -1,28 +1,28 @@
 ﻿using Ion.Extensions;
 using Ion.Middleware;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Reflection;
-using System.Threading.Tasks;
+using Ion.MicroServices.Middleware;
 
 namespace Ion.MicroServices;
 
 public static class IMicroServiceExtensions
-{    
-    public static IMicroService ConfigureServices(this IMicroService microservice, Action<IServiceCollection> action)
+{
+    public static IMicroService ConfigureServices(this IMicroService microservice, Action<IServiceCollection, IConfiguration> action)
     {
-        if(microservice == null) throw new ArgumentNullException(nameof(microservice));
-        if(action == null) throw new ArgumentNullException(nameof(action));
+        if (microservice == null) throw new ArgumentNullException(nameof(microservice));
+        if (action == null) throw new ArgumentNullException(nameof(action));
 
         var service = (MicroService)microservice;
 
         service.ConfigureActions.Add(action);
 
-        if(service.Environment.IsDevelopment())
+        if (service.Environment.IsDevelopment())
         {
-            service.ConfigureActions.Add(svc =>
+            service.ConfigureActions.Add((svc, cfg) =>
             {
                 svc.AddMiddlewareAnalysis();
             });
@@ -40,7 +40,7 @@ public static class IMicroServiceExtensions
     public static IMicroService InTestClass<T>(this IMicroService microservice)
         where T : class
     {
-        return microservice.InTestAssembly(typeof(T).Assembly);        
+        return microservice.InTestAssembly(typeof(T).Assembly);
     }
 
     /// <summary>
@@ -70,12 +70,22 @@ public static class IMicroServiceExtensions
             app.UseMiddleware<LivenessMiddleware>();
         });
 
-        if(developmentOnlyPipeline != null && service.Environment.IsDevelopment())
+        if (developmentOnlyPipeline != null && service.Environment.IsDevelopment())
         {
             service.ConfigurePipelineActions.Add(developmentOnlyPipeline);
         }
 
-        service.ConfigurePipelineActions.Add(MicroService.Middleware.MicroServiceLifecycleMiddlewares);       
+        service.ConfigurePipelineActions.Add(MicroService.Middleware.MicroServiceLifecycleMiddlewares);
+
+        service.ConfigurePipelineActions.Add(app =>
+        {
+            app.UseMiddleware<TracingMiddleware>();
+        });
+
+        if (microservice.Extensions.SingleOrDefault(extension => extension is IHaveRequestLoggingMiddleware) is IHaveRequestLoggingMiddleware requestLoggingExtension)
+        {
+            service.ConfigurePipelineActions.Add(requestLoggingExtension.ConfigureRequestLoggingMiddleware);
+        }
 
         return microservice;
     }
@@ -99,7 +109,7 @@ public static class IMicroServiceExtensions
         service.ValidatePipelineModeNotSet();
 
         service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
-        
+
         service.UseCoreMicroServicePipeline();
         service
             .ConfigureExtensions()
@@ -116,10 +126,9 @@ public static class IMicroServiceExtensions
                     });
                 });
             });
-        
+
         service.PipelineMode = MicroServicePipelineMode.None;
 
         return service;
     }
 }
-

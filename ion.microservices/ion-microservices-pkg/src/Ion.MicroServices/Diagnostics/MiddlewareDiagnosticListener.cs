@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DiagnosticAdapter;
-using System;
 
 namespace Ion.Diagnostics;
 
@@ -24,4 +23,3 @@ public class MiddlewareDiagnosticListener
         Console.WriteLine($"MiddlewareFinished: {name}; {httpContext.Response.StatusCode}");
     }
 }
-

@@ -10,4 +10,3 @@ public static class HostedStartupServiceExtensions
         return services.AddSingleton<IHostedStartupService, T>();
     }
 }
-

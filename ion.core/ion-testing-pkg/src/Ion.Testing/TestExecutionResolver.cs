@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
+using Ion.Extensions;
 
 namespace Ion.Testing
 {
@@ -22,22 +25,37 @@ namespace Ion.Testing
             { On.MacOS, "Test to be executed on MacOS." },
         };
 
-        public static string Resolve(Execute execute, On on)
+        public static string Resolve(Execute execute, On on, IEnumerable<string> environment = null)
         {
-            var exError = Resolve(execute);
-            var onError = Resolve(on);
+            string[] errors = new[]
+            {
+                Resolve(execute),
+                Resolve(on),
+                environment != null ? Resolve(environment) : null
+            };
 
-            if (exError != null && onError != null)
+            var count = errors.Count(e => e != null);
+
+
+            if (count > 1)
             {
-                return new StringBuilder(exError).Append(" & ").AppendLine(onError).ToString();
-            }
-            else if (exError != null)
+                var result = new StringBuilder();
+
+                errors.Where(e => e != null).ForEach(e =>
+                {
+                    result.Append(e);
+
+                    if (e != errors.Last(e => e != null))
+                    {
+                        result.Append(" & ");
+                    }
+                });
+
+                return result.ToString();
+            } 
+            else if (count == 1)
             {
-                return exError;
-            }
-            else if (onError != null)
-            {
-                return onError;
+                return errors.Single(e => e != null);
             }
 
             return null;
@@ -94,6 +112,11 @@ namespace Ion.Testing
             }
 
             return null;
+        }
+
+        internal static string Resolve(IEnumerable<string> environment)
+        {
+            return ValidateEnvVariablesExists(environment, () => "A required environment variable is missing");
         }
 
         private static string ValidateEnvVariablesExists(IEnumerable<string> names, Func<string> errorSelector)

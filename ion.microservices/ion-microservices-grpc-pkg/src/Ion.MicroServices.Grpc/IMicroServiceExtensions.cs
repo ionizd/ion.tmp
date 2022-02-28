@@ -1,5 +1,4 @@
-﻿using Ion.MicroServices;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using ProtoBuf.Grpc.Server;
@@ -26,12 +25,11 @@ namespace Ion.MicroServices.Grpc
 
             var service = (MicroService)microservice;
 
-
             service.ValidatePipelineModeNotSet();
 
             service.ConfigureActions.Add(MicroService.ServiceCollection.LifecycleServices);
 
-            service.ConfigureActions.Add(services =>
+            service.ConfigureActions.Add((services, configuration) =>
             {
                 configureGrpc(services);
             });

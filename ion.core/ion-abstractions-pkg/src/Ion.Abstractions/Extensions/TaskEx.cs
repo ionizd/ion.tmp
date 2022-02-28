@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Ion.Extensions;
+﻿namespace Ion.Extensions;
 
 public static class TaskEx
 {
@@ -44,7 +41,7 @@ public static class TaskEx
             while (!condition())
             {
                 onFailure?.Invoke();
-                await Task.Delay(frequency);                
+                await Task.Delay(frequency);
             }
         });
 

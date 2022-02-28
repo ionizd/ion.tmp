@@ -18,7 +18,8 @@ namespace Ion.MicroServices.Demo.Grpc.Services
 
             var response = new WeatherForecastResponse();
 
-            response.Item.AddRange(result.Select(x => new WeatherForecastItem() { 
+            response.Item.AddRange(result.Select(x => new WeatherForecastItem()
+            {
                 Date = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(x.Date),
                 Summary = x.Summary,
                 TemperatureC = x.TemperatureC,

@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+
 namespace Ion.MicroServices.Demo.GrpcCodeFirst.Services
 {
     [DataContract]
@@ -10,10 +11,10 @@ namespace Ion.MicroServices.Demo.GrpcCodeFirst.Services
         [DataMember(Order = 2)]
         public int TemperatureC { get; set; }
 
-        [DataMember(Order =3)]
+        [DataMember(Order = 3)]
         public int TemperatureF { get; set; }
 
-        [DataMember(Order =4)]
+        [DataMember(Order = 4)]
         public string Summary { get; set; }
     }
 }
