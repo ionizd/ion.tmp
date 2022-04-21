@@ -36,5 +36,13 @@ internal class Build : SmartBuild
                 new Artifact() { Name = "ion-microservices-job-pkg", Project = "Ion.MicroServices.Job", Type = ArtifactType.Package,  Stability = Stability.Stable }
             }
         },
+         new Module()
+        {
+            Name = "ion.servicediscovery",
+            Artifacts = new[]
+            {
+                new Artifact() { Name = "ion-servicediscovery-consul-pkg", Project = "Ion.ServiceDiscovery.Consul", Type = ArtifactType.Package, Stability = Stability.Stable }
+            }
+        },
     };
 }

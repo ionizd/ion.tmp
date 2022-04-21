@@ -112,9 +112,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B0801DF4-4AA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1D8C7B1B-75ED-4557-A2EE-F715C9A9B856}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.Logging.LogzIo", "ion.logging\ion-logging-logzio-pkg\src\Ion.Logging.LogzIo\Ion.Logging.LogzIo.csproj", "{0210ED92-1620-4316-94C8-D2C582C868E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Logging.LogzIo", "ion.logging\ion-logging-logzio-pkg\src\Ion.Logging.LogzIo\Ion.Logging.LogzIo.csproj", "{0210ED92-1620-4316-94C8-D2C582C868E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.Logging.LogzIo.Tests", "ion.logging\ion-logging-logzio-pkg\tests\Ion.Logging.LogzIo.Tests\Ion.Logging.LogzIo.Tests.csproj", "{82EF126F-1456-4C33-8E65-DF8B663760A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ion.Logging.LogzIo.Tests", "ion.logging\ion-logging-logzio-pkg\tests\Ion.Logging.LogzIo.Tests\Ion.Logging.LogzIo.Tests.csproj", "{82EF126F-1456-4C33-8E65-DF8B663760A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ion.servicediscovery", "ion.servicediscovery", "{2516980D-B0AC-48ED-9C15-E73D4F80A7C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ion-servicediscovery-consul-pkg", "ion-servicediscovery-consul-pkg", "{7D03DF4D-5B2A-43E0-B0F7-CCA3A148DC79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E9F539FE-E324-4412-B6FE-284AA2686153}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.ServiceDiscovery.Consul", "ion.servicediscovery\ion.servicediscovery-consul-pkg\src\Ion.ServiceDiscovery.Consul\Ion.ServiceDiscovery.Consul.csproj", "{F7555141-F5CF-4B05-A024-D2E448B169B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -210,6 +218,10 @@ Global
 		{82EF126F-1456-4C33-8E65-DF8B663760A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82EF126F-1456-4C33-8E65-DF8B663760A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82EF126F-1456-4C33-8E65-DF8B663760A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7555141-F5CF-4B05-A024-D2E448B169B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7555141-F5CF-4B05-A024-D2E448B169B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7555141-F5CF-4B05-A024-D2E448B169B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7555141-F5CF-4B05-A024-D2E448B169B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,6 +277,9 @@ Global
 		{1D8C7B1B-75ED-4557-A2EE-F715C9A9B856} = {5F14EFF4-B7D7-4A97-B5FA-A3FFDCD42580}
 		{0210ED92-1620-4316-94C8-D2C582C868E0} = {B0801DF4-4AAD-4974-9FD7-B7CD7C4A3308}
 		{82EF126F-1456-4C33-8E65-DF8B663760A0} = {1D8C7B1B-75ED-4557-A2EE-F715C9A9B856}
+		{7D03DF4D-5B2A-43E0-B0F7-CCA3A148DC79} = {2516980D-B0AC-48ED-9C15-E73D4F80A7C0}
+		{E9F539FE-E324-4412-B6FE-284AA2686153} = {7D03DF4D-5B2A-43E0-B0F7-CCA3A148DC79}
+		{F7555141-F5CF-4B05-A024-D2E448B169B9} = {E9F539FE-E324-4412-B6FE-284AA2686153}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A5B145F-29A4-4EE8-BAB3-29FCB87D36A1}

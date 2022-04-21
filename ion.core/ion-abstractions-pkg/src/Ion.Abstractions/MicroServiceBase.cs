@@ -85,4 +85,16 @@ public abstract class MicroServiceBase
             throw new NotSupportedException($"Unsupported platform: {RuntimeInformation.OSDescription}");
         }
     }
+
+    protected void InitializeFromEnvVar(string key, Action<string> action, string @default)
+    {
+        if(EnvironmentVariables.ContainsKey(key))
+        {
+            action(EnvironmentVariables[key]);
+        } 
+        else if (!string.IsNullOrEmpty(@default))
+        {
+            action(@default);
+        }
+    }
 }

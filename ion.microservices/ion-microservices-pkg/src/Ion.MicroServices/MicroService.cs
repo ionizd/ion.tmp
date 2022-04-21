@@ -8,13 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
+using System.Net;
 
 namespace Ion.MicroServices;
 
 public partial class MicroService : MicroServiceBase, IMicroService
 {
-    public bool ExternalLogger = false;
-
     public MicroService(string name) : this(name, null)
     {
     }
@@ -43,12 +42,13 @@ public partial class MicroService : MicroServiceBase, IMicroService
 
     public IMicroServiceLifetime Lifetime { get; } = new MicroServiceLifetime();
     public string Name { get; }
+    public string Namespace { get; private set; }
     public MicroServicePipelineMode PipelineMode { get; set; } = MicroServicePipelineMode.NotSet;
     public IServiceProvider ServiceProvider => Host.Services;
 
     public IConfigurationRoot ConfigurationRoot { get; private set; }
 
-    internal List<Action<IServiceCollection, IConfiguration>> ConfigureActions { get; } = new List<Action<IServiceCollection, IConfiguration>>();
+    public IPAddress Address { get; private set; }
 
     internal List<Action<IApplicationBuilder>> ConfigurePipelineActions { get; } = new List<Action<IApplicationBuilder>>();
 
@@ -59,6 +59,10 @@ public partial class MicroService : MicroServiceBase, IMicroService
     {
         System.Diagnostics.Activity.DefaultIdFormat = ActivityIdFormat.W3C;
 
+        // Initialize members from env variables provided by the k8s downward api
+        InitializeFromEnvVar("K8S_POD_NAMESPACE", (value) => { Namespace = value; }, "default");
+        InitializeFromEnvVar("K8S_POD_IPADDRESS", (value) => { Address = IPAddress.Parse(value); }, "127.0.0.1");
+        
         Host = CreateHostBuilder(configuration, args);
         
         return Task.CompletedTask;

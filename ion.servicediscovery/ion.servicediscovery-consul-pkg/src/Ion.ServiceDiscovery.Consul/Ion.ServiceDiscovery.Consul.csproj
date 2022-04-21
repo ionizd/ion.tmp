@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+		<RepositoryUrl>https://github.com/ionizd/ion</RepositoryUrl>
+		<PackageIconUrl>https://avatars.githubusercontent.com/u/35167581</PackageIconUrl>
+	</PropertyGroup>
+	<ItemGroup>
+	  <PackageReference Include="Consul" Version="1.6.10.4" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\ion.core\ion-abstractions-pkg\src\Ion.Abstractions\Ion.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\..\..\ion.logging\ion-logging-pkg\src\Ion.Logging\Ion.Logging.csproj" />
+	</ItemGroup>
+</Project>
