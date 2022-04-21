@@ -1,17 +1,17 @@
 using Ion.Logging;
-using Ion.Logging.LogzIo;
 using Ion.MicroServices;
 using Ion.MicroServices.Api;
+using Ion.ServiceDiscovery.Consul;
 
 var service = new MicroService("ion-microservices-apicontrollers-demo")
         .WithLogging(log =>
         {
             log
-                .ToConsole()
-                .ToLogzIo();
+                .ToConsole();
         })
-    .ConfigureServices((services, configuration) => { })
-    .ConfigureApiControllerPipeline()
+        .WithConsulServiceDiscovery()
+        .ConfigureServices((services, configuration) => { })
+        .ConfigureApiControllerPipeline()
     ;
 
 await service.RunAsync();
