@@ -50,6 +50,8 @@ public partial class MicroService : MicroServiceBase, IMicroService
 
     public IPAddress Address { get; private set; }
 
+    internal List<Action<IServiceCollection, IConfiguration>> ConfigureActions { get; } = new List<Action<IServiceCollection, IConfiguration>>();
+
     internal List<Action<IApplicationBuilder>> ConfigurePipelineActions { get; } = new List<Action<IApplicationBuilder>>();
 
     internal Func<Assembly> MicroServiceEntrypointAssemblyProvider { get; set; } = () => Assembly.GetEntryAssembly();

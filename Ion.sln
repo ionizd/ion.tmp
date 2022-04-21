@@ -122,7 +122,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ion-servicediscovery-consul
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E9F539FE-E324-4412-B6FE-284AA2686153}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.ServiceDiscovery.Consul", "ion.servicediscovery\ion.servicediscovery-consul-pkg\src\Ion.ServiceDiscovery.Consul\Ion.ServiceDiscovery.Consul.csproj", "{F7555141-F5CF-4B05-A024-D2E448B169B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ion.ServiceDiscovery.Consul", "ion.servicediscovery\ion-servicediscovery-consul-pkg\src\Ion.ServiceDiscovery.Consul\Ion.ServiceDiscovery.Consul.csproj", "{F7555141-F5CF-4B05-A024-D2E448B169B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
